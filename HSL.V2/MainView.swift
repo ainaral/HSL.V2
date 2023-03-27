@@ -14,6 +14,7 @@ struct MainView: View {
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("Welcome to HSL.V2")
+            Text("Test by Ying")
         }
         .padding()
     }
