@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct MicView: View {
+struct SpeechRecognizer: View {
     var body: some View {
-        Text("Mic View")
+        Text("Speech Recognizer")
     }
 }
 
 struct MicView_Previews: PreviewProvider {
     static var previews: some View {
-        MicView()
+        SpeechRecognizer()
     }
 }
