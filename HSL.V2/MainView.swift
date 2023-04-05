@@ -16,7 +16,7 @@ struct MainView: View {
                     Text("Home")
                 }
             
-            SpeechRecognizer()
+            SpeechRecognizerView()
                 .tabItem(){
                     Image(systemName: "mic")
                     Text("Mic")
