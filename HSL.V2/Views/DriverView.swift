@@ -21,6 +21,24 @@ struct DriverView: View {
                     .onAppear {
                         viewModel.checkIfLocationServicesIsEnabled()
                     }
+                // VStack to test if the fetchAPI works, later will remove
+                VStack {
+                    if let routes = viewModel.items {
+                        List(routes, id: \.gtfsId) { route in
+                            Text("gtfsIs: \(route.gtfsId)")
+                            Text("shortName: \(route.shortName)")
+                            Text("longName: \(route.longName)")
+                            Text("stop: \(route.trips[0].stoptimes[0].stop.name)")
+                            Text("stop: \(route.trips[0].stoptimes[0].realtimeArrival)")
+                            Text("stop: \(route.trips[1].stoptimes[0].stop.name)")
+                            Text("stop: \(route.trips[1].stoptimes[0].realtimeArrival)")
+                        }
+                    } else {
+                        Text("Loading")
+                    }
+                }.onAppear {
+                    self.viewModel.fetchStop()
+            }
             }
         }
     }

@@ -16,6 +16,7 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation,
                                                span: MapDetails.defaultSpan)
+    @Published var items = [Route]()
     
     var locationManager: CLLocationManager?
     
@@ -53,4 +54,37 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         checkLocationAuthorization()
     }
     
+    // fetch the stop info from API
+    func fetchStop() {
+        guard let url = URL(string: "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql?digitransit-subscription-key=107e15984f284c95b2a5c128295609d7") else { return }
+        
+        let query = "{ routes(name: \"532\", transportModes: BUS) { gtfsId shortName longName trips { stoptimes { stop { name lat lon } realtimeArrival } } } }"
+        let jsonData = Data(query.utf8)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        request.setValue("application/graphql", forHTTPHeaderField: "Content-Type")
+    
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            do {
+                if let data = data {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    if let jsonDict = json as? [String: Any], let dataDict = jsonDict["data"] as? [String: Any], let routesArray = dataDict["routes"] as? [[String: Any]] {
+                        let routesData = try JSONSerialization.data(withJSONObject: routesArray, options: [])
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .iso8601
+                        let routes = try decoder.decode([Route].self, from: routesData)
+                        DispatchQueue.main.async {
+                            self.items = routes
+                        }
+                    }
+                } else {
+                    print("no data")
+                }
+            } catch (let error) {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
 }
