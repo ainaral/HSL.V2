@@ -11,6 +11,7 @@
 		6A7F884729D5FD7700DC60BF /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F884629D5FD7700DC60BF /* AboutUsView.swift */; };
 		6A7F884A29D6250D00DC60BF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F884929D6250D00DC60BF /* HomeView.swift */; };
 		6A7F884C29D6253F00DC60BF /* SpeechRecognizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F884B29D6253F00DC60BF /* SpeechRecognizerView.swift */; };
+		6A9A926229E9DAF700DA6563 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9A926129E9DAF700DA6563 /* SpeechRecognizer.swift */; };
 		6AB5D7A629D18E9200AE8072 /* HSL_V2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5D7A529D18E9200AE8072 /* HSL_V2App.swift */; };
 		6AB5D7A829D18E9200AE8072 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5D7A729D18E9200AE8072 /* MainView.swift */; };
 		6AB5D7AA29D18E9400AE8072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AB5D7A929D18E9400AE8072 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		6A7F884629D5FD7700DC60BF /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
 		6A7F884929D6250D00DC60BF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		6A7F884B29D6253F00DC60BF /* SpeechRecognizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerView.swift; sourceTree = "<group>"; };
+		6A9A926129E9DAF700DA6563 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		6AB5D7A229D18E9200AE8072 /* HSL.V2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HSL.V2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB5D7A529D18E9200AE8072 /* HSL_V2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSL_V2App.swift; sourceTree = "<group>"; };
 		6AB5D7A729D18E9200AE8072 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			children = (
 				6AB5D7A529D18E9200AE8072 /* HSL_V2App.swift */,
 				6AB5D7A729D18E9200AE8072 /* MainView.swift */,
+				6A9A926129E9DAF700DA6563 /* SpeechRecognizer.swift */,
 				6A7F884829D61FD900DC60BF /* Views */,
 				6AB5D7A929D18E9400AE8072 /* Assets.xcassets */,
 				6AB5D7AB29D18E9400AE8072 /* Preview Content */,
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A9A926229E9DAF700DA6563 /* SpeechRecognizer.swift in Sources */,
 				6A7F884C29D6253F00DC60BF /* SpeechRecognizerView.swift in Sources */,
 				6A7F884529D5F26600DC60BF /* SettingsView.swift in Sources */,
 				6AB5D7A829D18E9200AE8072 /* MainView.swift in Sources */,
