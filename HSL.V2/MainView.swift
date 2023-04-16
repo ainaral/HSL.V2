@@ -9,14 +9,26 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Welcome to HSL.V2")
-            Text("Test by Ying, and here")
+        TabView {
+            HomeView()
+                .tabItem(){
+                    Image(systemName: "house")
+                    Text("Home")
+                }
+            
+            MicView()
+                .tabItem(){
+                    Image(systemName: "mic")
+                    Text("Mic")
+                }
+            
+            SettingsView()
+                .tabItem(){
+                    Image(systemName: "gearshape")
+                    Text("Settings")
+                }
         }
-        .padding()
+        .accentColor(.blue)
     }
 }
 
