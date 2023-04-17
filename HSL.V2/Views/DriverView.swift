@@ -13,32 +13,14 @@ struct DriverView: View {
     @StateObject private var viewModel = DriverViewModel()
 
     var body: some View {
-        NavigationView {
-            ZStack {
-                Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
-                    .ignoresSafeArea()
-                    .accentColor(Color(.systemPink))
-                    .onAppear {
-                        viewModel.checkIfLocationServicesIsEnabled()
-                    }
-                // VStack to test if the fetchAPI works, later will remove
-                VStack {
-                    if let routes = viewModel.items {
-                        List(routes, id: \.gtfsId) { route in
-                            Text("gtfsIs: \(route.gtfsId)")
-                            Text("shortName: \(route.shortName)")
-                            Text("longName: \(route.longName)")
-                            Text("stop: \(route.trips[0].stoptimes[0].stop.name)")
-                            Text("stop: \(route.trips[0].stoptimes[0].realtimeArrival)")
-                            Text("stop: \(route.trips[1].stoptimes[0].stop.name)")
-                            Text("stop: \(route.trips[1].stoptimes[0].realtimeArrival)")
-                        }
-                    } else {
-                        Text("Loading")
-                    }
-                }.onAppear {
-                    self.viewModel.fetchStop()
-            }
+        ZStack {
+            mapLayer
+                .ignoresSafeArea()
+
+            VStack {
+                SearchBarView(searchText: $viewModel.searchText)
+                    .padding()
+                Spacer()
             }
         }
     }
@@ -50,3 +32,82 @@ struct DriverView_Previews: PreviewProvider {
     }
 }
 
+extension DriverView {
+    private var mapLayer: some View {
+        Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
+            .accentColor(Color(.systemPink))
+            .onAppear {
+                viewModel.checkIfLocationServicesIsEnabled()
+            }
+    }
+}
+
+struct SearchBarView: View {
+    
+    @Binding var searchText: String
+    @StateObject private var viewModel = DriverViewModel()
+    
+    var body: some View {
+        VStack {
+            HStack {
+                TextField("      Search by your bus number...", text: $searchText)
+                    .disableAutocorrection(true)
+                    .onChange(of: searchText) { searchText in
+                        viewModel.searchText = searchText
+                    }
+                    .overlay(
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .opacity(searchText.isEmpty ? 1.0 : 0.0)
+                            
+                            Spacer()
+                            
+                            Image(systemName: "magnifyingglass")
+                                .offset(x: 10)
+                                .opacity(searchText.isEmpty ? 0.0 : 1.0)
+                                .onTapGesture {
+                                    viewModel.fetchBusesByNumber(search: searchText)
+                                    viewModel.showBusList.toggle()
+                                }
+                            
+                            Image(systemName: "xmark.circle.fill")
+                                .padding()
+                                .offset(x: 10)
+                                .opacity(searchText.isEmpty ? 0.0 : 1.0)
+                                .onTapGesture {
+                                    UIApplication.shared.endEditing()
+                                    searchText = ""
+                                    viewModel.showBusList = false
+                                }
+                        }
+                        , alignment: .trailing
+                    )
+            }
+            .font(.headline)
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(Color.white)
+                    .shadow(
+                        color: Color.black.opacity(0.8),
+                        radius: 10, x: 0, y:0)
+            )
+            .padding(.horizontal)
+            
+            if viewModel.showBusList {
+//                guard let buses = viewModel.buses else {
+                if let buses = viewModel.buses as [Bus]? {
+                    List(buses, id: \.gtfsId) { bus in
+                        Button {
+                            viewModel.fetchRouteByBus(search: bus.shortName)
+                        } label: {
+                            Text(bus.shortName)
+                        }
+                        .padding(.vertical, 4)
+                    }
+                    .listStyle(PlainListStyle())
+                }
+            }
+        }
+    }
+}
