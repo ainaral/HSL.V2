@@ -17,6 +17,7 @@ struct SpeechRecognizerView: View {
     
     let speechRecognizer = SpeechRecognizer()
     @State private var isRecording = false
+    @State private var isAnimating = false
     
     var body: some View {
         VStack {
@@ -34,22 +35,23 @@ struct SpeechRecognizerView: View {
                 Circle()
                     .fill(.blue)
                     .frame(width: 160, height: 160)
-                    .scaleEffect(isRecording ? 1.2 : 1.0)
-                    .animation(.spring(), value: isRecording)
+                    .scaleEffect(isAnimating ? 1.2 : 1.0)
+                    .animation(.easeInOut(duration: 1).repeatForever(), value: isRecording)
                 Circle()
                     .stroke(lightBlue, lineWidth: 20)
                     .frame(width:180, height: 180)
-                    .scaleEffect(isRecording ? 1.2 : 1.0)
-                    .animation(.spring(), value: isRecording)
+                    .scaleEffect(isAnimating ? 1.2 : 1.0)
+                    .animation(.easeInOut(duration: 1).repeatForever(), value: isRecording)
                 Circle()
                     .stroke(moreLightBlue, lineWidth: 20)
                     .frame(width:220, height: 220)
-                    .scaleEffect(isRecording ? 1.2 : 1.0)
-                    .animation(.spring(), value: isRecording)
+                    .scaleEffect(isAnimating ? 1.2 : 1.0)
+                    .animation(.easeInOut(duration: 1).repeatForever(), value: isRecording)
                 
                 Button(action: {
                     isRecording.toggle()
                     if isRecording {
+                        isAnimating = isRecording
                         speechRecognizer.startRecording { result, error in
                             DispatchQueue.main.async {
                                 if let error = error {
@@ -60,14 +62,17 @@ struct SpeechRecognizerView: View {
                             }
                         }
                     } else {
-                        speechRecognizer.stopRecording()
+                        withAnimation {
+                            isAnimating = false
+                            speechRecognizer.stopRecording()
+                        }
                     }
                 }) {
                     Image(systemName: "mic")
                         .font(.system(size: 80))
                         .foregroundColor(darkBlue)
                         .scaleEffect(isRecording ? 1.2 : 1.0) // Apply scale effect when recording
-                        .animation(.spring(), value: isRecording) // Add animation to the scale effect
+                        .animation(isRecording ? .none : .spring(), value: isRecording) 
                 }
                 VStack {
                     Spacer()
