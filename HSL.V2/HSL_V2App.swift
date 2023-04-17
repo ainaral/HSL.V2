@@ -11,7 +11,8 @@ import SwiftUI
 struct HSL_V2App: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+//            MainView()
+            DriverView()
         }
     }
 }
