@@ -16,7 +16,6 @@ struct SpeechRecognizerView: View {
     let darkBlue = Color(red: 0.0, green: 0.0, blue: 0.5)
     
     let speechRecognizer = SpeechRecognizer()
-    @State private var transcribedText: String = ""
     @State private var isRecording = false
     
     var body: some View {
@@ -35,12 +34,18 @@ struct SpeechRecognizerView: View {
                 Circle()
                     .fill(.blue)
                     .frame(width: 160, height: 160)
+                    .scaleEffect(isRecording ? 1.2 : 1.0)
+                    .animation(.spring(), value: isRecording)
                 Circle()
                     .stroke(lightBlue, lineWidth: 20)
                     .frame(width:180, height: 180)
+                    .scaleEffect(isRecording ? 1.2 : 1.0)
+                    .animation(.spring(), value: isRecording)
                 Circle()
                     .stroke(moreLightBlue, lineWidth: 20)
                     .frame(width:220, height: 220)
+                    .scaleEffect(isRecording ? 1.2 : 1.0)
+                    .animation(.spring(), value: isRecording)
                 
                 Button(action: {
                     isRecording.toggle()
@@ -48,9 +53,9 @@ struct SpeechRecognizerView: View {
                         speechRecognizer.startRecording { result, error in
                             DispatchQueue.main.async {
                                 if let error = error {
-                                    transcribedText = error.localizedDescription
+                                    speechRecognizer.transcribedText = error.localizedDescription
                                 } else {
-                                    transcribedText = result ?? ""
+                                    speechRecognizer.transcribedText = result ?? ""
                                 }
                             }
                         }
@@ -61,6 +66,8 @@ struct SpeechRecognizerView: View {
                     Image(systemName: "mic")
                         .font(.system(size: 80))
                         .foregroundColor(darkBlue)
+                        .scaleEffect(isRecording ? 1.2 : 1.0) // Apply scale effect when recording
+                        .animation(.spring(), value: isRecording) // Add animation to the scale effect
                 }
                 VStack {
                     Spacer()
@@ -104,59 +111,9 @@ struct SpeechRecognizerView: View {
     }
 }
 
-
-/*
-                      // code to start speech recognition
-// request permission
-SFSpeechRecognizer.requestAuthorization{ status in
-    switch status {
-    case .authorized:
-        // if permission is granted then start recording
-        startRecording()
-    default:
-        // permission not granted, show alert
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Speech Recognition Not Authorized", message: "Please enable speech recognition in Settings.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.parent?.present(alert, animated: true, completion: nil)
-        }
-    }
-}
- */
-/*
-func startRecording() {
-    // code
-    
-    let recognizer = SFSpeechRecognizer()
-    
-    let audioSession = AVAudioSession.sharedInstance()
-    do {
-        try audioSession.setCategory(.record, mode: .measurement, options: [.duckOthers, .defaultToSpeaker])
-        try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-    } catch {
-        print("Failed to set up audio session: \(error.localizedDescription)")
-        return
-    }
-    
-    let request = SFSpeechRecognitionRequest()
-    
-    // start recognition
-    recognizer?.recognitionTask(with: request) { [weak self] result, error in
-        guard let self = self else { return }
-        
-        if let result = result {
-            self.transcribedText = result.bestTranscription.formattedString
-        } else if let error = error {
-            print("Speech recognition error: \(error.localizedDescription)")
-        }
-    }
-}
- */
 struct SpeechRecognizerView_Previews: PreviewProvider {
     static var previews: some View {
         SpeechRecognizerView()
     }
 }
-
-
 
