@@ -27,6 +27,8 @@ struct SettingsView: View {
     @State private var location = false
     @State private var aboutUs = ""
     
+    var roleSelected: ((String) -> Void)? // callback function
+    
     var body: some View {
         NavigationView{
             List {
@@ -37,6 +39,9 @@ struct SettingsView: View {
                             ForEach(roles, id: \.self) { role in
                                 Text(role)
                             }
+                        }
+                        .onChange(of: selectedRole) { value in
+                            roleSelected?(value) // call the callback function when role is selected
                         }
                     }
                     HStack {
