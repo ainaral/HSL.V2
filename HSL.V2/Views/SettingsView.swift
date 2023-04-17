@@ -22,7 +22,7 @@ struct SettingsView: View {
     ]
     @State private var selectedLanguage: String = ""
     
-    @State private var firstName = ""
+    @AppStorage("firstName") private var firstName = ""
     @State private var sendNotifications = false
     @State private var location = false
     @State private var aboutUs = ""
