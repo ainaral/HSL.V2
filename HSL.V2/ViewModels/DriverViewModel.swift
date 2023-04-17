@@ -6,6 +6,7 @@
 //
 
 import MapKit
+import SwiftUI
 
 enum MapDetails {
     static let startingLocation = CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384)
@@ -16,7 +17,17 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation,
                                                span: MapDetails.defaultSpan)
-    @Published var items = [Route]()
+    // get the instance of RouteModel
+    @Published var routes = [Route]()
+    
+    // get the instance of BusModel
+    @Published var buses = [Bus]()
+    
+    // get the searchText from the searchBar
+    @Published var searchText: String = ""
+    
+    // Show list of bus
+    @Published var showBusList: Bool = false
     
     var locationManager: CLLocationManager?
     
@@ -54,11 +65,48 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         checkLocationAuthorization()
     }
     
-    // fetch the stop info from API
-    func fetchStop() {
+    // fetch the bus info from API
+    func fetchBusesByNumber(search: String) {
         guard let url = URL(string: "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql?digitransit-subscription-key=107e15984f284c95b2a5c128295609d7") else { return }
         
-        let query = "{ routes(name: \"532\", transportModes: BUS) { gtfsId shortName longName trips { stoptimes { stop { name lat lon } realtimeArrival } } } }"
+        let query = queryBus(search: search)
+        print(query)
+        let jsonData = Data(query.utf8)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        request.setValue("application/graphql", forHTTPHeaderField: "Content-Type")
+    
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            do {
+                if let data = data {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    if let jsonDict = json as? [String: Any], let dataDict = jsonDict["data"] as? [String: Any], let routesArray = dataDict["routes"] as? [[String: Any]] {
+                        let routesData = try JSONSerialization.data(withJSONObject: routesArray, options: [])
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .iso8601
+                        let buses = try decoder.decode([Bus].self, from: routesData)
+                        DispatchQueue.main.async {
+                            self.buses = buses
+                            print(self.buses)
+                        }
+                    }
+                } else {
+                    print("no data")
+                }
+            } catch (let error) {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
+    // fetch the route info by bus number from API
+    func fetchRouteByBus(search: String) {
+        guard let url = URL(string: "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql?digitransit-subscription-key=107e15984f284c95b2a5c128295609d7") else { return }
+        
+        let query = queryRoute(search: search)
+        print(query)
         let jsonData = Data(query.utf8)
         
         var request = URLRequest(url: url)
@@ -76,7 +124,8 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                         decoder.dateDecodingStrategy = .iso8601
                         let routes = try decoder.decode([Route].self, from: routesData)
                         DispatchQueue.main.async {
-                            self.items = routes
+                            self.routes = routes
+                            print(self.routes)
                         }
                     }
                 } else {
@@ -86,5 +135,19 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                 print(error.localizedDescription)
             }
         }.resume()
+    }
+    
+    func queryRoute(search: String) -> String {
+        let query1 = "{ routes(name: \""
+        let query2 = search
+        let query3 = "\", transportModes: BUS) { gtfsId shortName longName trips { stoptimes { stop { name lat lon } realtimeArrival } } } }"
+        return query1 + query2 + query3
+    }
+    
+    func queryBus(search: String) -> String {
+        let query1 = "{ routes(name: \""
+        let query2 = search
+        let query3 = "\", transportModes: BUS) { gtfsId shortName longName mode } }"
+        return query1 + query2 + query3
     }
 }
