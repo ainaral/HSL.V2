@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct HomeView: View {
+    let selectedRole: String
+    
     var body: some View {
-        Text("Home View")
+        if selectedRole == "Passenger" {
+            PassengerView()
+        } else if selectedRole == "Driver" {
+            DriverView()
+        }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(selectedRole: "Passenger")
     }
 }
