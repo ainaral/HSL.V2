@@ -85,29 +85,6 @@ struct SpeechRecognizerView: View {
                                 Text(speechRecognizer.transcribedText)
                                     .foregroundColor(.black)
                                 Spacer()
-                                HStack {
-                                    Button(action: {
-                                        // code to handle "Edit" button tapped
-                                    }) {
-                                        Text("Edit")
-                                            .foregroundColor(.black)
-                                    }
-                                    .frame(maxWidth: .infinity, maxHeight: 10)
-                                    .padding()
-                                    .background(lightBlue)
-                                    .cornerRadius(30)
-                                    
-                                    Button(action: {
-                                        // code to handle "Save" button tapped
-                                    }) {
-                                        Text("Save")
-                                            .foregroundColor(.black)
-                                    }
-                                    .frame(maxWidth: .infinity, maxHeight: 10)
-                                    .padding()
-                                    .background(lightBlue)
-                                    .cornerRadius(30)
-                                }
                             }
                         )
                 }

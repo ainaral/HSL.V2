@@ -14,7 +14,7 @@ class SpeechRecognizer {
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     
-    var transcribedText: String = ""
+    var transcribedText: String = "Your audio text will appear here ..."
     
     func startRecording(completion: @escaping (String?, Error?) -> Void) {
         // request permission
