@@ -5,7 +5,13 @@
 //  Created by 张嬴 on 14.4.2023.
 //
 
+
 import Foundation
+
+//struct Route: Decodable {
+//    let gtfsID, shortName: String
+//    let stops: [Stop]
+//}
 
 struct Route: Decodable {
     let gtfsId: String
