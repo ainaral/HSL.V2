@@ -50,15 +50,17 @@ struct SearchBarView: View {
     var body: some View {
         VStack {
             HStack {
-                TextField("      Search by your bus number...", text: $searchText)
+                Image(systemName: "magnifyingglass")
+                    .opacity(searchText.isEmpty ? 1.0 : 0.0)
+                
+                TextField("Search by your bus number...", text: $searchText)
                     .disableAutocorrection(true)
                     .onChange(of: searchText) { searchText in
                         viewModel.searchText = searchText
                     }
                     .overlay(
                         HStack {
-                            Image(systemName: "magnifyingglass")
-                                .opacity(searchText.isEmpty ? 1.0 : 0.0)
+                            
                             
                             Spacer()
                             

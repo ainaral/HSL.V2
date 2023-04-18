@@ -140,7 +140,7 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     func queryRoute(search: String) -> String {
         let query1 = "{ routes(name: \""
         let query2 = search
-        let query3 = "\", transportModes: BUS) { gtfsId shortName longName trips { stoptimes { stop { name lat lon } realtimeArrival } } } }"
+        let query3 = "\", transportModes: BUS) { gtfsId shortName stops { name lat lon } patterns { name patternGeometry { points } } } }"
         return query1 + query2 + query3
     }
     
@@ -151,3 +151,4 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         return query1 + query2 + query3
     }
 }
+
