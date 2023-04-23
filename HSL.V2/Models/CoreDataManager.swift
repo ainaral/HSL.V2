@@ -12,7 +12,7 @@ class CoreDataManager {
     static let shared = CoreDataManager()
 
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "HSL.V2")
+        let container = NSPersistentContainer(name: "HSLModel")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -34,17 +34,4 @@ class CoreDataManager {
             }
         }
     }
-    /*func saveContext(userPreferences: UserPreferences, context: NSManagedObjectContext) {
-        let userPreferences = UserPreferences(context: context)
-        userPreferences.fullName = userPreferences.fullName
-        userPreferences.role = userPreferences.role
-        userPreferences.language = userPreferences.language
-
-        do {
-            try context.save()
-        } catch {
-            print("Error saving route to Core Data: \(error)")
-        }
-    }
-     */
 }

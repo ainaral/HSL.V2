@@ -6,8 +6,46 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SettingsView: View {
+    
+    // Reference to managed object context
+    let context = CoreDataManager.shared.persistentContainer.viewContext
+    
+    // Data for the information
+    @FetchRequest(entity: UserPreferences.entity(), sortDescriptors: [], animation: .default)
+    var userPreferences: FetchedResults<UserPreferences>
+    
+    // save data to the core data
+    func saveUserPreferences() throws{
+        let newUserPreference = UserPreferences(context: context)
+        newUserPreference.fullName = firstName
+        newUserPreference.role = selectedRole
+        newUserPreference.language = selectedLanguage
+        
+        do {
+            try context.save()
+            print("User preferences saved.")
+        } catch {
+            print("Error saving user preferences: \(error.localizedDescription)")
+            throw error
+        }
+
+    }
+    
+    func fetchUserPreferences(){
+        // Fetch the data from core data
+        do{
+            let userPreferences = try context.fetch(UserPreferences.fetchRequest())
+            if let preferences = userPreferences.first {
+                selectedRole = preferences.role ?? ""
+                selectedLanguage = preferences.language ?? ""
+            }
+        } catch {
+            print("Error fetching user preferences: \(error.localizedDescription)")
+        }
+    }
     
     private let roles: [String] = [
         "Passenger",
@@ -25,7 +63,7 @@ struct SettingsView: View {
     @AppStorage("firstName") private var firstName = ""
     @State private var sendNotifications = false
     @State private var location = false
-    @State private var aboutUs = ""
+    // @State private var aboutUs = ""
     
     var roleSelected: ((String) -> Void)? // callback function
     
@@ -66,9 +104,21 @@ struct SettingsView: View {
                             .foregroundColor(.accentColor)
                     }
                 }
+                Section {
+                    Button(action: {
+                        do {
+                            try saveUserPreferences()
+                        } catch {
+                            print("Error saving user preferences: \(error.localizedDescription)")
+                        }                    }) {
+                            Text("Save")
+                        }
+                }
                 
                 .navigationTitle("Settings")
             }
+            
+            
             
         }
     }
