@@ -12,6 +12,7 @@ import UIKit
 struct MapView: UIViewRepresentable {
     private var viewModel = DriverViewModel()
     private var busName: String
+    private var stops = [Stop]()
     
     private let mapZoomEdgeInsets = UIEdgeInsets(top: 30.0, left: 30.0, bottom: 30.0, right: 30.0)
     
@@ -32,6 +33,17 @@ struct MapView: UIViewRepresentable {
         mapView.region = region
         mapView.showsUserLocation = true
         mapView.delegate = context.coordinator
+        
+        // get the stops
+        let stops = viewModel.stops
+        
+        // show the annotations for each stops
+        for stop in stops {
+            let annotations = MKPointAnnotation()
+            annotations.title = stop.name
+            annotations.coordinate = CLLocationCoordinate2D(latitude: stop.lat, longitude: stop.lon)
+            mapView.addAnnotation(annotations)
+        }
         return mapView
     }
     
@@ -56,6 +68,8 @@ struct MapView: UIViewRepresentable {
 struct MapView_Previews: PreviewProvider {
     private var viewModel = DriverViewModel()
   static var previews: some View {
-      MapView(busName: "224")
+      MapView(busName: "")
+//      MapView(stops: [])
+//      MapView()
   }
 }

@@ -29,4 +29,26 @@ final class MapViewCoordinator: NSObject, MKMapViewDelegate {
         renderer.lineWidth = 3.0
         return renderer
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // Check if the annotation is a point annotation (i.e. not the user's location)
+        guard let annotation = annotation as? MKPointAnnotation else {
+            return nil
+        }
+        
+        // Dequeue a reusable annotation view or create a new one
+        let reuseIdentifier = "stopAnnotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MKMarkerAnnotationView
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        }
+        
+        // Customize the annotation view
+        annotationView?.markerTintColor = UIColor.clear
+        annotationView?.glyphImage = UIImage(systemName: "bus")
+        annotationView?.selectedGlyphImage = UIImage(systemName: "bus")
+        annotationView?.glyphTintColor = UIColor.blue
+        
+        return annotationView
+    }
 }
