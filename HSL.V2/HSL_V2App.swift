@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct HSL_V2App: App {
+
     var body: some Scene {
         WindowGroup {
-//            MainView()
-            DriverView()
+            // MainView()
+            // DriverView()
+            PassengerView()
+                
         }
     }
 }

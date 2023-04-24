@@ -12,6 +12,13 @@
 		43507A9629ED589100BDDA28 /* BusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43507A9529ED589100BDDA28 /* BusModel.swift */; };
 		436A0ACA29DF16A50008F5A8 /* DriverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A0AC929DF16A50008F5A8 /* DriverView.swift */; };
 		436A0ACE29DF50710008F5A8 /* DriverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A0ACD29DF50710008F5A8 /* DriverViewModel.swift */; };
+		6A1F808A29EE840B00A6CB22 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1F808929EE840B00A6CB22 /* LocationManager.swift */; };
+		6A1F809E29EEA72900A6CB22 /* MapViewActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1F809D29EEA72900A6CB22 /* MapViewActionButton.swift */; };
+		6A58197B29F44D9100801C64 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A58197A29F44D9100801C64 /* MapView.swift */; };
+		6A58197D29F44E3F00801C64 /* MapViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A58197C29F44E3F00801C64 /* MapViewCoordinator.swift */; };
+		6A58198529F595DC00801C64 /* MapViewCoordinatorPassenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A58198429F595DC00801C64 /* MapViewCoordinatorPassenger.swift */; };
+		6A58198729F5B21C00801C64 /* BusSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A58198629F5B21C00801C64 /* BusSearchResultCell.swift */; };
+		6A6E1A1229EDC6D900FA10F4 /* PassengerMapRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6E1A1129EDC6D900FA10F4 /* PassengerMapRepresentable.swift */; };
 		6A7F884529D5F26600DC60BF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F884429D5F26600DC60BF /* SettingsView.swift */; };
 		6A7F884729D5FD7700DC60BF /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F884629D5FD7700DC60BF /* AboutUsView.swift */; };
 		6A7F884A29D6250D00DC60BF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F884929D6250D00DC60BF /* HomeView.swift */; };
@@ -22,6 +29,8 @@
 		6AB5D7AD29D18E9400AE8072 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AB5D7AC29D18E9400AE8072 /* Preview Assets.xcassets */; };
 		6ABEBC2029ED5DAE00DA170B /* PassengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABEBC1F29ED5DAE00DA170B /* PassengerView.swift */; };
 		6ABEBC2229ED5DE900DA170B /* SearchPassengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABEBC2129ED5DE900DA170B /* SearchPassengerView.swift */; };
+		6AC8AF8329F447F700B321F8 /* PassengerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC8AF8229F447F700B321F8 /* PassengerViewModel.swift */; };
+		6ACBA32A29F07FB300A29488 /* Polyline in Frameworks */ = {isa = PBXBuildFile; productRef = 6ACBA32929F07FB300A29488 /* Polyline */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +39,13 @@
 		43507A9529ED589100BDDA28 /* BusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusModel.swift; sourceTree = "<group>"; };
 		436A0AC929DF16A50008F5A8 /* DriverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverView.swift; sourceTree = "<group>"; };
 		436A0ACD29DF50710008F5A8 /* DriverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewModel.swift; sourceTree = "<group>"; };
+		6A1F808929EE840B00A6CB22 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		6A1F809D29EEA72900A6CB22 /* MapViewActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewActionButton.swift; sourceTree = "<group>"; };
+		6A58197A29F44D9100801C64 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		6A58197C29F44E3F00801C64 /* MapViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewCoordinator.swift; sourceTree = "<group>"; };
+		6A58198429F595DC00801C64 /* MapViewCoordinatorPassenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewCoordinatorPassenger.swift; sourceTree = "<group>"; };
+		6A58198629F5B21C00801C64 /* BusSearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSearchResultCell.swift; sourceTree = "<group>"; };
+		6A6E1A1129EDC6D900FA10F4 /* PassengerMapRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerMapRepresentable.swift; sourceTree = "<group>"; };
 		6A7F884429D5F26600DC60BF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6A7F884629D5FD7700DC60BF /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
 		6A7F884929D6250D00DC60BF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -41,6 +57,7 @@
 		6AB5D7AC29D18E9400AE8072 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6ABEBC1F29ED5DAE00DA170B /* PassengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerView.swift; sourceTree = "<group>"; };
 		6ABEBC2129ED5DE900DA170B /* SearchPassengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPassengerView.swift; sourceTree = "<group>"; };
+		6AC8AF8229F447F700B321F8 /* PassengerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ACBA32A29F07FB300A29488 /* Polyline in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,8 +93,19 @@
 			isa = PBXGroup;
 			children = (
 				436A0ACD29DF50710008F5A8 /* DriverViewModel.swift */,
+				6AC8AF8229F447F700B321F8 /* PassengerViewModel.swift */,
+				6A58197C29F44E3F00801C64 /* MapViewCoordinator.swift */,
+				6A58198429F595DC00801C64 /* MapViewCoordinatorPassenger.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		6A1F808829EE839A00A6CB22 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				6A1F808929EE840B00A6CB22 /* LocationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		6A7F884829D61FD900DC60BF /* Views */ = {
@@ -88,7 +117,11 @@
 				6A7F884B29D6253F00DC60BF /* MicView.swift */,
 				436A0AC929DF16A50008F5A8 /* DriverView.swift */,
 				6ABEBC1F29ED5DAE00DA170B /* PassengerView.swift */,
+				6A6E1A1129EDC6D900FA10F4 /* PassengerMapRepresentable.swift */,
+				6A1F809D29EEA72900A6CB22 /* MapViewActionButton.swift */,
 				6ABEBC2129ED5DE900DA170B /* SearchPassengerView.swift */,
+				6A58197A29F44D9100801C64 /* MapView.swift */,
+				6A58198629F5B21C00801C64 /* BusSearchResultCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -112,6 +145,7 @@
 		6AB5D7A429D18E9200AE8072 /* HSL.V2 */ = {
 			isa = PBXGroup;
 			children = (
+				6A1F808829EE839A00A6CB22 /* Managers */,
 				43507A9229ED582C00BDDA28 /* Extensions */,
 				4306300329E9445A009D678D /* Models */,
 				436A0ACC29DF50640008F5A8 /* ViewModels */,
@@ -148,6 +182,9 @@
 			dependencies = (
 			);
 			name = HSL.V2;
+			packageProductDependencies = (
+				6ACBA32929F07FB300A29488 /* Polyline */,
+			);
 			productName = HSL.V2;
 			productReference = 6AB5D7A229D18E9200AE8072 /* HSL.V2.app */;
 			productType = "com.apple.product-type.application";
@@ -176,6 +213,9 @@
 				Base,
 			);
 			mainGroup = 6AB5D79929D18E9200AE8072;
+			packageReferences = (
+				6ACBA32829F07FB300A29488 /* XCRemoteSwiftPackageReference "Polyline" */,
+			);
 			productRefGroup = 6AB5D7A329D18E9200AE8072 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -202,16 +242,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A6E1A1229EDC6D900FA10F4 /* PassengerMapRepresentable.swift in Sources */,
 				436A0ACE29DF50710008F5A8 /* DriverViewModel.swift in Sources */,
+				6A1F808A29EE840B00A6CB22 /* LocationManager.swift in Sources */,
 				6ABEBC2029ED5DAE00DA170B /* PassengerView.swift in Sources */,
+				6A58197D29F44E3F00801C64 /* MapViewCoordinator.swift in Sources */,
 				436A0ACA29DF16A50008F5A8 /* DriverView.swift in Sources */,
+				6A58198729F5B21C00801C64 /* BusSearchResultCell.swift in Sources */,
 				6A7F884C29D6253F00DC60BF /* MicView.swift in Sources */,
 				43507A9629ED589100BDDA28 /* BusModel.swift in Sources */,
 				6ABEBC2229ED5DE900DA170B /* SearchPassengerView.swift in Sources */,
 				4306300529E9447E009D678D /* RouteModel.swift in Sources */,
 				6A7F884529D5F26600DC60BF /* SettingsView.swift in Sources */,
+				6AC8AF8329F447F700B321F8 /* PassengerViewModel.swift in Sources */,
+				6A58198529F595DC00801C64 /* MapViewCoordinatorPassenger.swift in Sources */,
 				6AB5D7A829D18E9200AE8072 /* MainView.swift in Sources */,
+				6A1F809E29EEA72900A6CB22 /* MapViewActionButton.swift in Sources */,
 				6A7F884729D5FD7700DC60BF /* AboutUsView.swift in Sources */,
+				6A58197B29F44D9100801C64 /* MapView.swift in Sources */,
 				6A7F884A29D6250D00DC60BF /* HomeView.swift in Sources */,
 				43507A9429ED584000BDDA28 /* UIApplication.swift in Sources */,
 				6AB5D7A629D18E9200AE8072 /* HSL_V2App.swift in Sources */,
@@ -417,6 +465,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6ACBA32829F07FB300A29488 /* XCRemoteSwiftPackageReference "Polyline" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raphaelmor/Polyline.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6ACBA32929F07FB300A29488 /* Polyline */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6ACBA32829F07FB300A29488 /* XCRemoteSwiftPackageReference "Polyline" */;
+			productName = Polyline;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6AB5D79A29D18E9200AE8072 /* Project object */;
 }

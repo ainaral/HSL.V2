@@ -10,7 +10,6 @@ import SwiftUI
 struct SearchPassengerView: View {
     // The `showSearchScreen` property is a binding that indicates whether the search screen should be shown or hidden.
     @Binding var showSearchScreen: Bool
-    
     @State private var isDragging = false
     
     // The number of stops the passenger needs to be notified before the bus arrives
@@ -21,8 +20,9 @@ struct SearchPassengerView: View {
     }
     
     @State var busNum: String = ""
-    @State var originLocation: String = ""
-    @State private var destinationLocation: String = ""
+    @StateObject private var viewModel = PassengerViewModel()
+    
+    
     @State private var busStops: BusStops = .stopOne
     @State private var currentHeight: CGFloat = 400
     
@@ -58,26 +58,49 @@ struct SearchPassengerView: View {
                 VStack {
                     Form {
                         Section(header: Text("Search for bus number")) {
-                            TextField("Search here", text: $busNum)
-                        }
-                        Section(header: Text("Origin Location")) {
-                            TextField("Origin", text: $originLocation)
-                        }
-                        Section(header: Text("Destination Location")) {
-                            TextField("Destination", text: $destinationLocation)
-                        }
-                        List {
-                            Picker(selection: $busStops) {
-                                ForEach(BusStops.allCases, id: \.self){ stop in
-                                    Text(stop.rawValue.capitalized).tag(stop)
+                            TextField("Search by your bus number...", text: $busNum)
+                                .disableAutocorrection(true)
+                                .onChange(of: busNum) { busNum in
+                                    viewModel.busNum = busNum
                                 }
-                            } label: {
-                                Text("Select stops to be notified")
-                                    .font(.custom("Georgia", size: 18, relativeTo: .title))
-                            }
-                            .pickerStyle(.menu)
+                                .overlay(
+                                    HStack {
+                                        Image(systemName: "magnifyingglass")
+                                            .offset(x: 10)
+                                            .opacity(busNum.isEmpty ? 0.0 : 1.0)
+                                            .onTapGesture {
+                                                viewModel.fetchData(queryType: .busesByNumber(search: busNum))
+                                            }
+                                        Image(systemName: "xmark.circle.fill")
+                                            .padding()
+                                            .offset(x: 10)
+                                            .opacity(busNum.isEmpty ? 0.0 : 1.0)
+                                            .onTapGesture {
+                                                UIApplication.shared.endEditing()
+                                                busNum = ""
+                                                viewModel.showBusList = false
+                                            }
+                                    }
+                                    , alignment: .trailing
+                                )
                         }
-                        .padding(.horizontal, 30)
+                        if viewModel.showBusList {
+                            if let buses = viewModel.buses as [Bus]? {
+                                List(buses, id: \.gtfsId) { bus in
+                                    BusSearchResultCell(title: bus.shortName, subTitle: bus.longName)
+                                        .onTapGesture {
+                                            viewModel.selectRoute(bus.longName)
+                                            showSearchScreen.toggle()
+
+                                        }
+                                }
+                                .listStyle(DefaultListStyle())
+                            }
+                        }
+                        Section(header: Text("Direction")) {
+                            Text("To A")
+                            Text("To B")
+                        }
                     }
                     .frame(maxHeight: .infinity)
                     .cornerRadius(20)
@@ -91,7 +114,7 @@ struct SearchPassengerView: View {
     // The `prevDragTranslation` property is used to keep track of the previous drag translation.
     @State private var prevDragTranslation = CGSize.zero
     
-    var dragGesture: some Gesture{
+    var dragGesture: some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .global)
             .onChanged { val in
                 if !isDragging {
@@ -116,6 +139,7 @@ struct SearchPassengerView: View {
             }
     }
 }
+    
 
 struct SearchPassangerView_Previews: PreviewProvider {
     static var previews: some View {
@@ -123,4 +147,3 @@ struct SearchPassangerView_Previews: PreviewProvider {
         // PassengerView()
     }
 }
-
