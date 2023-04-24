@@ -29,6 +29,7 @@
 		6AB5D7AD29D18E9400AE8072 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AB5D7AC29D18E9400AE8072 /* Preview Assets.xcassets */; };
 		6ABEBC2029ED5DAE00DA170B /* PassengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABEBC1F29ED5DAE00DA170B /* PassengerView.swift */; };
 		6ABEBC2229ED5DE900DA170B /* SearchPassengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABEBC2129ED5DE900DA170B /* SearchPassengerView.swift */; };
+		6AE2655D29F7107A00C5C019 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2655C29F7107A00C5C019 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		6AB5D7AC29D18E9400AE8072 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6ABEBC1F29ED5DAE00DA170B /* PassengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerView.swift; sourceTree = "<group>"; };
 		6ABEBC2129ED5DE900DA170B /* SearchPassengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPassengerView.swift; sourceTree = "<group>"; };
+		6AE2655C29F7107A00C5C019 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				43507A9329ED584000BDDA28 /* UIApplication.swift */,
+				6AE2655C29F7107A00C5C019 /* Colors.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				436A0ACE29DF50710008F5A8 /* DriverViewModel.swift in Sources */,
+				6AE2655D29F7107A00C5C019 /* Colors.swift in Sources */,
 				6ABEBC2029ED5DAE00DA170B /* PassengerView.swift in Sources */,
 				436A0ACA29DF16A50008F5A8 /* DriverView.swift in Sources */,
 				6A7F884C29D6253F00DC60BF /* SpeechRecognizerView.swift in Sources */,
