@@ -12,11 +12,15 @@ struct MainView: View {
     @State private var selectedRole: String = "Passenger"
     
     var body: some View {
+    
+        
         TabView {
+            WelcomeScreenView()
+                .navigationBarHidden(true)
             
             HomeView(selectedRole: selectedRole)
                 .tabItem(){
-                    Image(systemName: "house")
+                    Image(systemName: "house.fill")
                     Text("Home")
                 }
             
@@ -35,11 +39,12 @@ struct MainView: View {
             }
         }
         .accentColor(.blue)
+        
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        WelcomeScreenView()
     }
 }
