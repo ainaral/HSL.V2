@@ -110,7 +110,6 @@
 		6AB5D79929D18E9200AE8072 = {
 			isa = PBXGroup;
 			children = (
-				6AD8284029EFFEA4001E9336 /* HSLModel.xcdatamodeld */,
 				6AB5D7A429D18E9200AE8072 /* HSL.V2 */,
 				6AB5D7A329D18E9200AE8072 /* Products */,
 			);
@@ -127,6 +126,7 @@
 		6AB5D7A429D18E9200AE8072 /* HSL.V2 */ = {
 			isa = PBXGroup;
 			children = (
+				6AD8285129F6A4CF001E9336 /* CoreData */,
 				43507A9229ED582C00BDDA28 /* Extensions */,
 				4306300329E9445A009D678D /* Models */,
 				436A0ACC29DF50640008F5A8 /* ViewModels */,
@@ -145,6 +145,14 @@
 				6AB5D7AC29D18E9400AE8072 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6AD8285129F6A4CF001E9336 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6AD8284029EFFEA4001E9336 /* HSLModel.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
