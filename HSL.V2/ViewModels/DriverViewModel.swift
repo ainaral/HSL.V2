@@ -38,6 +38,9 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     // get the patternGeometry
     @Published var patternGeometry: String = ""
+    
+    // get the stops
+    @Published var stops = [Stop]()
       
     // check if the location services is enabled
     func checkIfLocationServicesIsEnabled() {
@@ -126,6 +129,7 @@ extension DriverViewModel {
                             DispatchQueue.main.async {
                                 self.routes = routes
                                 self.patternGeometry = routes[0].patterns[0].patternGeometry.points
+                                self.stops = routes[0].stops
                                 self.fetchLocations()
                             }
                         }
@@ -164,6 +168,6 @@ extension DriverViewModel {
         let polyline = Polyline(encodedPolyline: patternGeometry, encodedLevels: "BA")
         guard let decodedLocations = polyline.locations else { return }
         locations = decodedLocations.map { CLLocationCoordinate2D(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude)}
-        print("fetchLocation: \(locations)")
+//        print("fetchLocation: \(locations)")
     }
 }

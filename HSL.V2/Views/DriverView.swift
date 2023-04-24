@@ -71,6 +71,7 @@ struct SearchBarView: View {
 //                                    .alert(isPresented: $viewModel.showAlert) {
 //                                        Alert(title: Text("No bus"), message: Text("Please check your bus"), dismissButton: .default(Text("OK")))
 //                                    }
+
                                 Image(systemName: "xmark.circle.fill")
                                     .padding()
                                     .offset(x: 10)

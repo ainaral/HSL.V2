@@ -8,25 +8,30 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @State private var selectedRole: String = "Passenger"
+    
     var body: some View {
         TabView {
-            HomeView()
+            HomeView(selectedRole: selectedRole)
                 .tabItem(){
                     Image(systemName: "house")
                     Text("Home")
                 }
             
-            MicView()
+            SpeechRecognizerView()
                 .tabItem(){
                     Image(systemName: "mic")
                     Text("Mic")
                 }
             
-            SettingsView()
-                .tabItem(){
-                    Image(systemName: "gearshape")
-                    Text("Settings")
-                }
+            SettingsView(roleSelected: { role in
+                selectedRole = role
+            })
+            .tabItem(){
+                Image(systemName: "gearshape")
+                Text("Settings")
+            }
         }
         .accentColor(.blue)
     }
