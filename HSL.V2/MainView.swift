@@ -31,9 +31,11 @@ struct MainView: View {
             .tabItem(){
                 Image(systemName: "gearshape")
                 Text("Settings")
+                    .foregroundColor(Color.theme.blue)
             }
         }
-        .accentColor(.blue)
+        .background(Color.theme.background)
+        .accentColor(Color.theme.blue)
     }
 }
 
