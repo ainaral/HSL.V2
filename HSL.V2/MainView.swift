@@ -13,6 +13,7 @@ struct MainView: View {
     
     var body: some View {
         TabView {
+            
             HomeView(selectedRole: selectedRole)
                 .tabItem(){
                     Image(systemName: "house")

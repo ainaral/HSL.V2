@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19639CC129F6677300E12A2C /* WelcomeScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19639CC029F6677300E12A2C /* WelcomeScreenModel.swift */; };
+		19B53F9E29E4B4AC007FAA10 /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B53F9D29E4B4AC007FAA10 /* WelcomeScreenView.swift */; };
 		4306300529E9447E009D678D /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306300429E9447E009D678D /* RouteModel.swift */; };
 		4344636629EF21B200C348CE /* Polyline in Frameworks */ = {isa = PBXBuildFile; productRef = 4344636529EF21B200C348CE /* Polyline */; };
 		4344636829EF260900C348CE /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4344636729EF260900C348CE /* MapView.swift */; };
@@ -15,7 +17,6 @@
 		43507A9629ED589100BDDA28 /* BusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43507A9529ED589100BDDA28 /* BusModel.swift */; };
 		436A0ACA29DF16A50008F5A8 /* DriverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A0AC929DF16A50008F5A8 /* DriverView.swift */; };
 		436A0ACE29DF50710008F5A8 /* DriverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A0ACD29DF50710008F5A8 /* DriverViewModel.swift */; };
-		19B53F9E29E4B4AC007FAA10 /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B53F9D29E4B4AC007FAA10 /* WelcomeScreenView.swift */; };
 		6A7F884529D5F26600DC60BF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F884429D5F26600DC60BF /* SettingsView.swift */; };
 		6A7F884729D5FD7700DC60BF /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F884629D5FD7700DC60BF /* AboutUsView.swift */; };
 		6A7F884A29D6250D00DC60BF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F884929D6250D00DC60BF /* HomeView.swift */; };
@@ -30,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19639CC029F6677300E12A2C /* WelcomeScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenModel.swift; sourceTree = "<group>"; };
+		19B53F9D29E4B4AC007FAA10 /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		4306300429E9447E009D678D /* RouteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteModel.swift; sourceTree = "<group>"; };
 		4344636729EF260900C348CE /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		4344636929EF267200C348CE /* MapViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewCoordinator.swift; sourceTree = "<group>"; };
@@ -37,7 +40,6 @@
 		43507A9529ED589100BDDA28 /* BusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusModel.swift; sourceTree = "<group>"; };
 		436A0AC929DF16A50008F5A8 /* DriverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverView.swift; sourceTree = "<group>"; };
 		436A0ACD29DF50710008F5A8 /* DriverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewModel.swift; sourceTree = "<group>"; };
-		19B53F9D29E4B4AC007FAA10 /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		6A7F884429D5F26600DC60BF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6A7F884629D5FD7700DC60BF /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
 		6A7F884929D6250D00DC60BF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				4306300429E9447E009D678D /* RouteModel.swift */,
 				43507A9529ED589100BDDA28 /* BusModel.swift */,
 				6A9A926129E9DAF700DA6563 /* SpeechRecognizer.swift */,
+				19639CC029F6677300E12A2C /* WelcomeScreenModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -228,8 +231,9 @@
 				6A7F884C29D6253F00DC60BF /* SpeechRecognizerView.swift in Sources */,
 				4344636A29EF267300C348CE /* MapViewCoordinator.swift in Sources */,
 				19B53F9E29E4B4AC007FAA10 /* WelcomeScreenView.swift in Sources */,
-				6A7F884C29D6253F00DC60BF /* MicView.swift in Sources */,
+				6A7F884C29D6253F00DC60BF /* SpeechRecognizerView.swift in Sources */,
 				43507A9629ED589100BDDA28 /* BusModel.swift in Sources */,
+				19639CC129F6677300E12A2C /* WelcomeScreenModel.swift in Sources */,
 				6ABEBC2229ED5DE900DA170B /* SearchPassengerView.swift in Sources */,
 				4344636829EF260900C348CE /* MapView.swift in Sources */,
 				4306300529E9447E009D678D /* RouteModel.swift in Sources */,
