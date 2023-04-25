@@ -16,8 +16,8 @@ struct DriverView: View {
         NavigationStack {
             ZStack {
                 mapLayer
-                    .ignoresSafeArea()
-                    
+                // .ignoresSafeArea()
+                .edgesIgnoringSafeArea(.top)
                 VStack {
                     SearchBarView(searchText: $viewModel.searchText)
                         .padding()
@@ -54,7 +54,7 @@ struct SearchBarView: View {
                 HStack {
                     Image(systemName: "magnifyingglass")
                         .opacity(searchText.isEmpty ? 1.0 : 0.0)
-                    
+                        .foregroundColor(Color.theme.blue)
                     TextField("Search by your bus number...", text: $searchText)
                         .disableAutocorrection(true)
                         .onChange(of: searchText) { searchText in
@@ -65,6 +65,7 @@ struct SearchBarView: View {
                                 Image(systemName: "magnifyingglass")
                                     .offset(x: 10)
                                     .opacity(searchText.isEmpty ? 0.0 : 1.0)
+                                    .foregroundColor(Color.theme.blue)
                                     .onTapGesture {
                                         viewModel.fetchData(queryType: .busesByNumber(search: searchText))
                                     }
@@ -76,6 +77,7 @@ struct SearchBarView: View {
                                     .padding()
                                     .offset(x: 10)
                                     .opacity(searchText.isEmpty ? 0.0 : 1.0)
+                                    .foregroundColor(Color.theme.blue)
                                     .onTapGesture {
                                         UIApplication.shared.endEditing()
                                         searchText = ""
