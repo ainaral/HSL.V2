@@ -20,7 +20,7 @@ struct SettingsView: View {
     // save data to the core data
     func saveUserPreferences() throws{
         let newUserPreference = UserPreferences(context: context)
-        newUserPreference.fullName = firstName
+        newUserPreference.fullName = fullName
         newUserPreference.role = selectedRole
         newUserPreference.language = selectedLanguage
         
@@ -59,8 +59,7 @@ struct SettingsView: View {
         "Swedish"
     ]
     @State private var selectedLanguage: String = ""
-    
-    @AppStorage("firstName") private var firstName = ""
+    @State private var fullName = ""
     @State private var sendNotifications = false
     @State private var location = false
     // @State private var aboutUs = ""
@@ -71,7 +70,7 @@ struct SettingsView: View {
         NavigationView{
             List {
                 Section(header: Text("My information")){
-                    TextField("Full Name", text: $firstName)
+                    TextField("Full Name", text: $fullName)
                     HStack {
                         Picker("I am a", selection: $selectedRole) {
                             ForEach(roles, id: \.self) { role in
@@ -87,6 +86,7 @@ struct SettingsView: View {
                         Picker("Choose a language", selection: $selectedLanguage) {
                             ForEach(languages, id: \.self) { language in
                                 Text(language)
+                                    .tag(language)
                             }
                         }
                         .foregroundColor(Color.theme.blue)

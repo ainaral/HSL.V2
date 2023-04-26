@@ -21,13 +21,15 @@ class CoreDataManager {
         return container
     }()
 
-    // Core Data Saving support
+    var managedObjectContext: NSManagedObjectContext {
+        persistentContainer.viewContext
+    }
     
+    // Core Data Saving support
     func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges{
+       if  managedObjectContext.hasChanges{
             do {
-                try context.save()
+                try managedObjectContext.save()
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
