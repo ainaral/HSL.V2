@@ -8,59 +8,25 @@
 
 import Foundation
 
-//struct Route: Decodable {
-//    let gtfsID, shortName: String
-//    let stops: [Stop]
-//}
-
 struct Route: Decodable {
     let gtfsId: String
     let shortName: String
-    let longName: String
-    let trips: [Trip]
+    let stops: [Stop]
+    let patterns: [Pattern]
 
     enum CodingKeys: String, CodingKey {
         case gtfsId
         case shortName
-        case longName
-        case trips
+        case stops
+        case patterns
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         gtfsId = try container.decode(String.self, forKey: .gtfsId)
         shortName = try container.decode(String.self, forKey: .shortName)
-        longName = try container.decode(String.self, forKey: .longName)
-        trips = try container.decode([Trip].self, forKey: .trips)
-    }
-}
-
-struct Trip: Decodable {
-    let stoptimes: [StopTime]
-
-    enum CodingKeys: String, CodingKey {
-        case stoptimes
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        stoptimes = try container.decode([StopTime].self, forKey: .stoptimes)
-    }
-}
-
-struct StopTime: Decodable {
-    let stop: Stop
-    let realtimeArrival: Int
-
-    enum CodingKeys: String, CodingKey {
-        case stop
-        case realtimeArrival
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        stop = try container.decode(Stop.self, forKey: .stop)
-        realtimeArrival = try container.decode(Int.self, forKey: .realtimeArrival)
+        stops = try container.decode([Stop].self, forKey: .stops)
+        patterns = try container.decode([Pattern].self, forKey: .patterns)
     }
 }
 
@@ -80,5 +46,33 @@ struct Stop: Decodable {
         name = try container.decode(String.self, forKey: .name)
         lat = try container.decode(Double.self, forKey: .lat)
         lon = try container.decode(Double.self, forKey: .lon)
+    }
+}
+
+struct Pattern: Decodable {
+    let name: String
+    let patternGeometry: PatternGeometry
+    
+    enum CodingKeys: String, CodingKey {
+        case name, patternGeometry
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        patternGeometry = try container.decode(PatternGeometry.self, forKey: .patternGeometry)
+    }
+}
+
+struct PatternGeometry: Decodable {
+    let points: String
+    
+    enum CodingKeys: String, CodingKey {
+        case points
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        points = try container.decode(String.self, forKey: .points)
     }
 }

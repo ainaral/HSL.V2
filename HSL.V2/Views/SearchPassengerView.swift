@@ -11,20 +11,15 @@ struct SearchPassengerView: View {
     // The `showSearchScreen` property is a binding that indicates whether the search screen should be shown or hidden.
     @Binding var showSearchScreen: Bool
     
+    @StateObject private var viewModel = PassengerViewModel()
+    
+    
+    
     @State private var isDragging = false
     
-    // The number of stops the passenger needs to be notified before the bus arrives
-    enum BusStops: String, Codable, CaseIterable {
-        case stopOne = "One Stop"
-        case stopTwo = "Two Stops"
-        case stopThree = "Three Stops"
-    }
-    
     @State var busNum: String = ""
-    @State var originLocation: String = ""
-    @State private var destinationLocation: String = ""
-    @State private var busStops: BusStops = .stopOne
-    @State private var currentHeight: CGFloat = 400
+    
+    @State private var currentHeight: CGFloat = 200
     
     let minHeight: CGFloat = 100
     let maxHeight: CGFloat = 700
@@ -56,31 +51,14 @@ struct SearchPassengerView: View {
             
             ZStack {
                 VStack {
-                    Form {
-                        Section(header: Text("Search for bus number")) {
-                            TextField("Search here", text: $busNum)
-                        }
-                        Section(header: Text("Origin Location")) {
-                            TextField("Origin", text: $originLocation)
-                        }
-                        Section(header: Text("Destination Location")) {
-                            TextField("Destination", text: $destinationLocation)
-                        }
-                        List {
-                            Picker(selection: $busStops) {
-                                ForEach(BusStops.allCases, id: \.self){ stop in
-                                    Text(stop.rawValue.capitalized).tag(stop)
-                                }
-                            } label: {
-                                Text("Select stops to be notified")
-                                    .font(.custom("Georgia", size: 18, relativeTo: .title))
-                            }
-                            .pickerStyle(.menu)
-                        }
-                        .padding(.horizontal, 30)
-                    }
-                    .frame(maxHeight: .infinity)
-                    .cornerRadius(20)
+                    searchBus(searchText: $viewModel.searchText)
+                        .padding(.bottom, 50)
+//                    Form {
+//                        List {
+//                            Text("To A")
+//                            Text("To B")
+//                        }
+//                    }
                 }
                 .frame(height: currentHeight)
                 .frame(maxWidth: .infinity)

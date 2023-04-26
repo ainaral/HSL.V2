@@ -81,6 +81,7 @@ struct SettingsView: View {
                         .onChange(of: selectedRole) { value in
                             roleSelected?(value) // call the callback function when role is selected
                         }
+                        .foregroundColor(Color.theme.blue)
                     }
                     HStack {
                         Picker("Choose a language", selection: $selectedLanguage) {
@@ -88,20 +89,23 @@ struct SettingsView: View {
                                 Text(language)
                             }
                         }
+                        .foregroundColor(Color.theme.blue)
                     }
                     
                 }
                 Section(header:Text ("Notifications")){
                     Toggle("Notifications", isOn: $sendNotifications)
+                        .foregroundColor(Color.theme.blue)
                 }
                 Section(header:Text ("Location Permission")){
                     Toggle("Location", isOn: $location)
+                        .foregroundColor(Color.theme.blue)
                 }
                 Section(header:Text ("About us")){
                     NavigationLink(destination: AboutUsView()) {
                         Label("About us", systemImage: "person.3.fill")
                             .font(.headline)
-                            .foregroundColor(.accentColor)
+                            .foregroundColor(Color.theme.blue)
                     }
                 }
                 Section {
