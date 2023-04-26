@@ -154,6 +154,7 @@ struct searchBus: View {
                         viewModel.fetchData(queryType: .routeByBus(search: bus.shortName))
                         viewModel.showBusList = false
                         viewModel.showDirectionList = true
+                        viewModel.selectedBus = bus.shortName
                     } label: {
                         Text(bus.shortName)
                     }
@@ -170,8 +171,10 @@ struct searchBus: View {
                         destination:
                             MapViewPassenger(
                                 patternGeometry: item.patternGeometry.points,
-                                stopsInfo: viewModel.stops)
+                                stopsInfo: viewModel.stops,
+                                selectedBus: viewModel.selectedBus)
                             .ignoresSafeArea()
+                            
                     )
                 }
                 .listStyle(PlainListStyle())

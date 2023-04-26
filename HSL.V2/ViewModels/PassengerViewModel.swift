@@ -8,6 +8,7 @@
 import MapKit
 import SwiftUI
 import Polyline
+import CoreData
 
 
 class PassengerViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
@@ -41,7 +42,10 @@ class PassengerViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     
     // show the direction list
     @Published var showDirectionList: Bool = false
-      
+    
+    // get the selected bus
+    @Published var selectedBus: String = ""
+    
     // check if the location services is enabled
     func checkIfLocationServicesIsEnabled() {
         if CLLocationManager.locationServicesEnabled() {
@@ -167,6 +171,26 @@ extension PassengerViewModel {
         let polyline = Polyline(encodedPolyline: points, encodedLevels: "BA")
         guard let decodedLocations = polyline.locations else { return }
         locations = decodedLocations.map { CLLocationCoordinate2D(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude)}
+    }
+}
+
+extension PassengerViewModel {
+    
+    func addMarker(busName: String, stopLat: Double, stopLon: Double) {
+        let newMarker = Marker(context: CoreDataManager.shared.viewContext)
+        newMarker.busName = busName
+        newMarker.stopLat = stopLat
+        newMarker.stopLon = stopLon
+        
+        CoreDataManager.shared.save()
+    }
+    
+    func getMarkers() -> [Marker] {
+        CoreDataManager.shared.getMarkers()
+    }
+    
+    func getMarkerByName(busName: String) -> [Marker] {
+        CoreDataManager.shared.getMarkersByBus(busName: busName)
     }
 }
 

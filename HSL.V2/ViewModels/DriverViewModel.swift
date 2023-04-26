@@ -174,3 +174,10 @@ extension DriverViewModel {
         locations = decodedLocations.map { CLLocationCoordinate2D(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude)}
     }
 }
+
+extension DriverViewModel {
+    
+    func getMarkerByName(busName: String) -> [Marker] {
+        CoreDataManager.shared.getMarkersByBus(busName: busName)
+    }
+}

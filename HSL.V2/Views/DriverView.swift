@@ -103,7 +103,7 @@ struct SearchBarView: View {
                             NavigationLink(
                                 bus.shortName,
                                 destination:
-                                    MapView(busName: bus.shortName)
+                                    MapView(busName: bus.shortName, selectedBus: bus.shortName)
                                         .ignoresSafeArea()
                             )
                         }
