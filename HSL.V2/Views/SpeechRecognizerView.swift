@@ -11,10 +11,7 @@ import Speech
 import SwiftUI
 
 struct SpeechRecognizerView: View {
-    let lightBlue = Color.blue.opacity(0.7)
-    let moreLightBlue = Color.blue.opacity(0.4)
-    let darkBlue = Color(red: 0.0, green: 0.0, blue: 0.5)
-    
+
     let speechRecognizer = SpeechRecognizer()
     @State private var isRecording = false
     @State private var isAnimating = false
@@ -23,27 +20,27 @@ struct SpeechRecognizerView: View {
         VStack {
             Text("Click on the mic icon and start talking.")
                 .font(.system(size: 25))
-                .foregroundColor(darkBlue)
+                .foregroundColor(Color.theme.accent)
                 .multilineTextAlignment(.center)
             
             Text("Hint:\n \"Notify me when bus 510 is 1 stop away\"")
                 .font(.subheadline)
-                .foregroundColor(.gray)
+                .foregroundColor(Color.theme.gray)
                 .padding(.top, 20)
             
             ZStack {
                 Circle()
-                    .fill(.blue)
+                    .fill(Color.theme.blue)
                     .frame(width: 160, height: 160)
                     .scaleEffect(isAnimating ? 1.2 : 1.0)
                     .animation(.easeInOut(duration: 1).repeatForever(), value: isRecording)
                 Circle()
-                    .stroke(lightBlue, lineWidth: 20)
+                    .stroke(Color.theme.lightBlue, lineWidth: 20)
                     .frame(width:180, height: 180)
                     .scaleEffect(isAnimating ? 1.2 : 1.0)
                     .animation(.easeInOut(duration: 1).repeatForever(), value: isRecording)
                 Circle()
-                    .stroke(moreLightBlue, lineWidth: 20)
+                    .stroke(Color.theme.moreLightBlue, lineWidth: 20)
                     .frame(width:220, height: 220)
                     .scaleEffect(isAnimating ? 1.2 : 1.0)
                     .animation(.easeInOut(duration: 1).repeatForever(), value: isRecording)
@@ -70,20 +67,20 @@ struct SpeechRecognizerView: View {
                 }) {
                     Image(systemName: "mic")
                         .font(.system(size: 80))
-                        .foregroundColor(darkBlue)
+                        .foregroundColor(Color.theme.accent)
                         .scaleEffect(isRecording ? 1.2 : 1.0) // Apply scale effect when recording
                         .animation(isRecording ? .none : .spring(), value: isRecording) 
                 }
                 VStack {
                     Spacer()
                     Rectangle()
-                        .fill(moreLightBlue)
+                        .fill(Color.theme.moreLightBlue)
                         .frame(width: 300, height: 120)
                         .cornerRadius(15)
                         .overlay(
                             VStack {
                                 Text(speechRecognizer.transcribedText)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color.theme.accent)
                                 Spacer()
                             }
                         )
