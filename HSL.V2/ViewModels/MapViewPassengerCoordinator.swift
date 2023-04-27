@@ -1,19 +1,24 @@
 //
-//  MapViewCoordinator.swift
+//  MapViewPassengerCoordinator.swift
 //  HSL.V2
 //
-//  Created by 张嬴 on 18.4.2023.
+//  Created by 张嬴 on 24.4.2023.
 //
 
 import MapKit
 
-final class MapViewCoordinator: NSObject, MKMapViewDelegate {
-    private let map: MapView
-    
-    init(_ control: MapView) {
+final class MapViewPassengerCoordinator: NSObject, MKMapViewDelegate {
+    private var viewModel = PassengerViewModel()
+    private let map: MapViewPassenger
+    private let selectedBus: String
+
+  
+    init(_ control: MapViewPassenger, selectedBus: String) {
         self.map = control
+        self.viewModel.selectedBus = selectedBus
+        self.selectedBus = selectedBus
     }
-    
+  
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         if let annotationView = views.first, let annotation = annotationView.annotation {
             if annotation is MKUserLocation {
@@ -22,7 +27,8 @@ final class MapViewCoordinator: NSObject, MKMapViewDelegate {
             }
         }
     }
-    
+
+    // customize the polyline
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = .blue
@@ -33,7 +39,7 @@ final class MapViewCoordinator: NSObject, MKMapViewDelegate {
     // customize the annotation for stops
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         var annotationView: MKMarkerAnnotationView?
-        // Check if the annotation is a point annotation (i.e. not the user's location)
+        // Check if the annotation is a point annotation
         guard let annotation = annotation as? MKPointAnnotation else {
             return nil
         }
@@ -50,7 +56,6 @@ final class MapViewCoordinator: NSObject, MKMapViewDelegate {
             annotationView?.markerTintColor = UIColor.red
             annotationView?.glyphImage = UIImage(systemName: "pin")
             annotationView?.selectedGlyphImage = UIImage(systemName: "pin")
-            annotationView?.glyphTintColor = UIColor.white
             annotationView?.glyphTintColor = UIColor.white
 
             
@@ -77,8 +82,27 @@ final class MapViewCoordinator: NSObject, MKMapViewDelegate {
             annotationView?.selectedGlyphImage = UIImage(systemName: "bus")
             annotationView?.glyphTintColor = UIColor.blue
         }
-        
         return annotationView
     }
     
+    // add the delegate method to handle tap on the right callout accessory view
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        // Get the selected annotation
+        guard let annotation = view.annotation else { return }
+        
+        // remove the old annotation
+        mapView.removeAnnotation(annotation)
+        
+        // Create a new annotation with the same coordinate as the selected annotation
+        let markerAnnotation = MKPointAnnotation()
+        markerAnnotation.coordinate = annotation.coordinate
+        markerAnnotation.title = "Marker"
+        markerAnnotation.subtitle = "You've already mark yourself here."
+
+        // Add the new annotation to the map view's annotations array
+        mapView.addAnnotation(markerAnnotation)
+        
+        // save the annotation to core data
+        viewModel.addMarker(busName: viewModel.selectedBus, stopLat: annotation.coordinate.latitude, stopLon: annotation.coordinate.longitude)
+    }
 }

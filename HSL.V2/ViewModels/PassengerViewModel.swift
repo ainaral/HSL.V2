@@ -1,21 +1,17 @@
 //
-//  DriverViewModel.swift
+//  PassengerViewModel.swift
 //  HSL.V2
 //
-//  Created by 张嬴 on 6.4.2023.
+//  Created by 张嬴 on 23.4.2023.
 //
 
 import MapKit
 import SwiftUI
 import Polyline
+import CoreData
 
-enum MapDetails {
-    static let startingLocation = CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384)
-    static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-}
 
-class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
-    
+class PassengerViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation,
                                                span: MapDetails.defaultSpan)
     // get the instance of RouteModel
@@ -40,7 +36,16 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     // get the stops
     @Published var stops = [Stop]()
-      
+    
+    // get the direction
+    @Published var patternArray = [Pattern]()
+    
+    // show the direction list
+    @Published var showDirectionList: Bool = false
+    
+    // get the selected bus
+    @Published var selectedBus: String = ""
+    
     // check if the location services is enabled
     func checkIfLocationServicesIsEnabled() {
         if CLLocationManager.locationServicesEnabled() {
@@ -77,7 +82,7 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 }
 
-extension DriverViewModel {
+extension PassengerViewModel {
     
     enum QueryType {
         case busesByNumber(search: String)
@@ -103,7 +108,6 @@ extension DriverViewModel {
         request.httpBody = jsonData
         request.setValue("application/graphql", forHTTPHeaderField: "Content-Type")
         
-        // to gegt the data
         URLSession.shared.dataTask(with: request) { data, response, error in
             do {
                 if let data = data {
@@ -127,11 +131,10 @@ extension DriverViewModel {
                         case .routeByBus:
                             let routes = try decoder.decode([Route].self, from: routesData)
                             DispatchQueue.main.async {
-                                // get routes, patternGeometry for polyline, stops for annotations
+                                // get routes, patternArray for different directions, stops for annotations
                                 self.routes = routes
-                                self.patternGeometry = routes[0].patterns[0].patternGeometry.points
+                                self.patternArray = routes[0].patterns
                                 self.stops = routes[0].stops
-                                self.fetchLocations()
                             }
                         }
                     }
@@ -161,23 +164,33 @@ extension DriverViewModel {
     }
 }
 
-extension DriverViewModel {
-    // to load
-    func load() {
-        fetchData(queryType: .routeByBus(search: searchText))
-    }
+extension PassengerViewModel {
     
     // decode the patternGeometry to draw the polyline
-    private func fetchLocations() {
-        let polyline = Polyline(encodedPolyline: patternGeometry, encodedLevels: "BA")
+    func fetchLocations(points: String) {
+        let polyline = Polyline(encodedPolyline: points, encodedLevels: "BA")
         guard let decodedLocations = polyline.locations else { return }
         locations = decodedLocations.map { CLLocationCoordinate2D(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude)}
     }
 }
 
-extension DriverViewModel {
+extension PassengerViewModel {
+    
+    func addMarker(busName: String, stopLat: Double, stopLon: Double) {
+        let newMarker = Marker(context: CoreDataManager.shared.viewContext)
+        newMarker.busName = busName
+        newMarker.stopLat = stopLat
+        newMarker.stopLon = stopLon
+        
+        CoreDataManager.shared.save()
+    }
+    
+    func getMarkers() -> [Marker] {
+        CoreDataManager.shared.getMarkers()
+    }
     
     func getMarkerByName(busName: String) -> [Marker] {
         CoreDataManager.shared.getMarkersByBus(busName: busName)
     }
 }
+
