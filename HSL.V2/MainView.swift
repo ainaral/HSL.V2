@@ -7,41 +7,77 @@
 
 import SwiftUI
 
+extension UserDefaults {
+    var welcomeScreenShown: Bool {
+        get {
+            return (UserDefaults.standard.value(forKey: "welcomeScreenShown") as? Bool ) ?? false
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "welcomeScreenShown")
+        }
+    }
+}
+
 struct MainView: View {
     
     @State private var selectedRole: String = "Passenger"
     
     var body: some View {
-    
-        
-        TabView {
-            WelcomeScreenView()
-                .navigationBarHidden(true)
-            
-            HomeView(selectedRole: selectedRole)
+        if UserDefaults.standard.welcomeScreenShown {
+            TabView {
+                HomeView(selectedRole: selectedRole)
+                    .tabItem(){
+                        Image(systemName: "house.fill")
+                        Text("Home")
+                    }
+                    .navigationBarHidden(true)
+                
+                SpeechRecognizerView()
+                    .tabItem(){
+                        Image(systemName: "mic")
+                        Text("Mic")
+                    }
+                
+                SettingsView(roleSelected: { role in
+                    selectedRole = role
+                })
                 .tabItem(){
-                    Image(systemName: "house.fill")
-                    Text("Home")
+                    Image(systemName: "gearshape")
+                    Text("Settings")
                 }
-            
-            SpeechRecognizerView()
-                .tabItem(){
-                    Image(systemName: "mic")
-                    Text("Mic")
-                }
-            
-            SettingsView(roleSelected: { role in
-                selectedRole = role
-            })
-            .tabItem(){
-                Image(systemName: "gearshape")
-                Text("Settings")
             }
+            .accentColor(.blue)
+        } else {
+            TabView {
+                WelcomeScreenView()
+                
+                
+                HomeView(selectedRole: selectedRole)
+                    .tabItem(){
+                        Image(systemName: "house.fill")
+                        Text("Home")
+                    }
+                    .navigationBarHidden(true)
+                
+                SpeechRecognizerView()
+                    .tabItem(){
+                        Image(systemName: "mic")
+                        Text("Mic")
+                    }
+                
+                SettingsView(roleSelected: { role in
+                    selectedRole = role
+                })
+                .tabItem(){
+                    Image(systemName: "gearshape")
+                    Text("Settings")
+                }
+            }
+            .accentColor(.blue)
         }
-        .accentColor(.blue)
-        
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

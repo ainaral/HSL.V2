@@ -49,6 +49,7 @@ struct PassengerView: View {
             // The search screen displayed as a pop-up
             SearchPassengerView(showSearchScreen: $showSearchScreen)
         }
+        .navigationBarHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .statusBar(hidden: true)
         .onAppear {

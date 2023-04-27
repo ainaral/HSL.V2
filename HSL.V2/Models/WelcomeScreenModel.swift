@@ -12,7 +12,7 @@ import Combine
 class WelcomeScreenModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     private let locationManager = CLLocationManager()
     private var cancellable: AnyCancellable?
-    
+    static let isFirstLaunchKey = "isFirstLaunch"
     @Published var enableLocation = false
     
     override init() {
@@ -23,6 +23,7 @@ class WelcomeScreenModel: NSObject, CLLocationManagerDelegate, ObservableObject 
     
     func requestLocationAuthorization() {
         locationManager.requestWhenInUseAuthorization()
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

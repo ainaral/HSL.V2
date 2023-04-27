@@ -16,13 +16,14 @@ struct WelcomeScreenView: View  {
         "Passenger",
         "Driver"
     ]
-    @State private var selectedRole: String = ""
     @State private var notifications = false
-    @State private var userRole = "Passenger"
+    @State private var selectedRole = "Passenger"
     @State private var termsAccepted = false
     @State private var isNotificationEnabled = false
     @State private var enableLocation = false
-
+    @AppStorage("welcomeScreenShown")
+    var welcomeScreenShown: Bool = false
+    
     
     var body: some View {
         NavigationView {
@@ -38,7 +39,7 @@ struct WelcomeScreenView: View  {
                 VStack(alignment: .leading) {
                     Text("Sign in as")
                         .font(.headline)
-                    Picker(selection: $userRole, label: Text("")) {
+                    Picker(selection: $selectedRole, label: Text("")) {
                         Text("Passenger").tag("Passenger")
                         Text("Driver").tag("Driver")
                     }
@@ -95,13 +96,16 @@ struct WelcomeScreenView: View  {
                 .foregroundColor(.white)
                 
                 // Continue button
-                NavigationLink(destination: Group {
-                    if userRole == "Passenger" {
-                        PassengerView()
-                    } else {
-                        DriverView()
-                    }
-                }) {
+                NavigationLink(
+                    //                    destination: Group {
+                    //                    if selectedRole == "Passenger" {
+                    //                        PassengerView()
+                    //                    } else {
+                    //                        DriverView()
+                    //                    }
+                    //                }
+                    destination: HomeView(selectedRole: selectedRole)
+                ) {
                     Text("Continue")
                         .foregroundColor(.white)
                         .font(.headline)
@@ -117,7 +121,11 @@ struct WelcomeScreenView: View  {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity) // 1
             .background(Color.blue)
+            
         }
+        .onAppear(perform: {
+            UserDefaults.standard.welcomeScreenShown = true
+        })
     }
 }
     

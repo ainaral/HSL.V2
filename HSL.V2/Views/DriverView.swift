@@ -25,6 +25,7 @@ struct DriverView: View {
                 }
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
