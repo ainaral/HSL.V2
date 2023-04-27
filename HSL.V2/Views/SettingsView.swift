@@ -11,66 +11,7 @@ import CoreData
 struct SettingsView: View {
     
     @StateObject private var viewModel = SettingsViewModel()
-    
-    
-    /*@State private var selectedLanguage: String = ""
-     @State private var fullName = ""
-     @State private var sendNotifications = false
-     @State private var location = false
-     
-     // Reference to managed object context
-     let context = CoreDataManager.shared.persistentContainer.viewContext
-     
-     // Data for the information
-     var items: [UserPreferences]?
-     /*@FetchRequest(entity: UserPreferences.entity(), sortDescriptors: [], animation: .default)
-      var userPreferences: FetchedResults<UserPreferences>*/
-     
-     // save data to the core data
-     func saveUserPreferences() throws{
-     let newUserPreference = UserPreferences(context: self.context)
-     newUserPreference.fullName = fullName
-     newUserPreference.role = selectedRole
-     newUserPreference.language = selectedLanguage
-     
-     do {
-     try context.save()
-     print("User preferences saved.")
-     } catch {
-     print("Error saving user preferences: \(error.localizedDescription)")
-     throw error
-     }
-     
-     }
-     
-     func fetchUserPreferences(){
-     // Fetch the data from core data
-     do{
-     let userPreferences = try context.fetch(UserPreferences.fetchRequest())
-     if let preferences = userPreferences.first {
-     fullName = preferences.fullName ?? ""
-     selectedRole = preferences.role ?? ""
-     selectedLanguage = preferences.language ?? ""
-     }
-     } catch {
-     print("Error fetching user preferences: \(error.localizedDescription)")
-     }
-     }
-     
-     private let roles: [String] = [
-     "Passenger",
-     "Driver"
-     ]
-     @State private var selectedRole: String = ""
-     
-     private let languages: [String] = [
-     "English",
-     "Finnish",
-     "Swedish"
-     ]
-     
-     // @State private var aboutUs = ""
-     */
+
     var roleSelected: ((String) -> Void)? // callback function
     
     init(roleSelected: ((String) -> Void)? = nil) {

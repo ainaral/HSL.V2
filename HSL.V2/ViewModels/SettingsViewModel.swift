@@ -21,7 +21,6 @@ class SettingsViewModel: ObservableObject {
     let context = CoreDataManager.shared.persistentContainer.viewContext
     
     // Data for the information
-    // var items: [UserPreferences]?
     @FetchRequest(entity: UserPreferences.entity(), sortDescriptors: [], animation: .default)
     var userPreferences: FetchedResults<UserPreferences> {
         didSet {
@@ -31,66 +30,46 @@ class SettingsViewModel: ObservableObject {
     
     // save data to the core data
     func saveUserPreferences() throws{
-            let context = CoreDataManager.shared.persistentContainer.viewContext
-            
-            // Fetch the existing user preferences
-            let request = NSFetchRequest<UserPreferences>(entityName: "UserPreferences")
-            let existingPreferences = try context.fetch(request).first
-            
-            if let preferences = existingPreferences {
-                // Update the existing entity with the new information
-                preferences.fullName = fullName
-                preferences.role = selectedRole
-                preferences.language = selectedLanguage
-                //preferences.sendNotifications = sendNotifications
-                //preferences.location = location
-            } else {
-                // Create a new entity with the new information
-                let newPreferences = UserPreferences(context: context)
-                newPreferences.fullName = fullName
-                newPreferences.role = selectedRole
-                newPreferences.language = selectedLanguage
-                //newPreferences.sendNotifications = sendNotifications
-                //newPreferences.location = location
-            }
-            
-            do {
-                try context.save()
-                print("User preferences saved.")
-            } catch {
-                print("Error saving user preferences: \(error.localizedDescription)")
-                throw error
-            }
-            
-            // Fetch the updated preferences from Core Data and update the UI
-            do {
-                let updatedPreferences = try context.fetch(request).first
-                if let preferences = updatedPreferences {
-                    fullName = preferences.fullName ?? ""
-                    selectedRole = preferences.role ?? ""
-                    selectedLanguage = preferences.language ?? ""
-                    //sendNotifications = preferences.sendNotifications
-                    //location = preferences.location
-                }
-            } catch {
-                print("Error fetching user preferences: \(error.localizedDescription)")
-            }
+        let context = CoreDataManager.shared.persistentContainer.viewContext
         
-
-       /* let newUserPreference = UserPreferences(context: context)
-        newUserPreference.fullName = fullName
-        newUserPreference.role = selectedRole
-        newUserPreference.language = selectedLanguage
+        // Fetch the existing user preferences
+        let request = NSFetchRequest<UserPreferences>(entityName: "UserPreferences")
+        let existingPreferences = try context.fetch(request).first
+        
+        if let preferences = existingPreferences {
+            // Update the existing entity with the new information
+            preferences.fullName = fullName
+            preferences.role = selectedRole
+            preferences.language = selectedLanguage
+        } else {
+            // Create a new entity with the new information
+            let newPreferences = UserPreferences(context: context)
+            newPreferences.fullName = fullName
+            newPreferences.role = selectedRole
+            newPreferences.language = selectedLanguage
+        }
         
         do {
             try context.save()
             print("User preferences saved.")
-            print("Full Name: \(newUserPreference.fullName ?? "")")
         } catch {
             print("Error saving user preferences: \(error.localizedDescription)")
             throw error
         }
-*/
+        
+        // Fetch the updated preferences from Core Data and update the UI
+        do {
+            let updatedPreferences = try context.fetch(request).first
+            if let preferences = updatedPreferences {
+                fullName = preferences.fullName ?? ""
+                selectedRole = preferences.role ?? ""
+                selectedLanguage = preferences.language ?? ""
+                //sendNotifications = preferences.sendNotifications
+                //location = preferences.location
+            }
+        } catch {
+            print("Error fetching user preferences: \(error.localizedDescription)")
+        }
     }
     
     func fetchUserPreferences(){

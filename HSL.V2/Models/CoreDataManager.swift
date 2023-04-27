@@ -25,21 +25,6 @@ class CoreDataManager {
             }
         }
     }
-/*    var managedObjectContext: NSManagedObjectContext {
-        persistentContainer.viewContext
-    }
-    
-    // save user preferences
-    func saveContext () {
-        if  managedObjectContext.hasChanges{
-            do {
-                try managedObjectContext.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }*/
 
     // to save the data
     func save() {
