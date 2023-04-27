@@ -21,11 +21,11 @@ extension UserDefaults {
 struct MainView: View {
     
     @State private var selectedRole: String = "Passenger"
-    
+    @State public var userRole: String
     var body: some View {
         if UserDefaults.standard.welcomeScreenShown {
             TabView {
-                HomeView(selectedRole: selectedRole)
+                HomeView(selectedRole: userRole)
                     .tabItem(){
                         Image(systemName: "house.fill")
                         Text("Home")
@@ -39,7 +39,7 @@ struct MainView: View {
                     }
                 
                 SettingsView(roleSelected: { role in
-                    selectedRole = role
+                    userRole = role
                 })
                 .tabItem(){
                     Image(systemName: "gearshape")
@@ -48,35 +48,35 @@ struct MainView: View {
             }
             .accentColor(.blue)
         } else {
-            TabView {
+            NavigationView {
                 WelcomeScreenView()
-                
-                
-                HomeView(selectedRole: selectedRole)
-                    .tabItem(){
-                        Image(systemName: "house.fill")
-                        Text("Home")
-                    }
-                    .navigationBarHidden(true)
-                
-                SpeechRecognizerView()
-                    .tabItem(){
-                        Image(systemName: "mic")
-                        Text("Mic")
-                    }
-                
-                SettingsView(roleSelected: { role in
-                    selectedRole = role
-                })
-                .tabItem(){
-                    Image(systemName: "gearshape")
-                    Text("Settings")
+//                TabView {
+//                    HomeView(selectedRole: selectedRole)
+//                        .tabItem(){
+//                            Image(systemName: "house.fill")
+//                            Text("Home")
+//                        }
+//                        .navigationBarHidden(true)
+//
+//                    SpeechRecognizerView()
+//                        .tabItem(){
+//                            Image(systemName: "mic")
+//                            Text("Mic")
+//                        }
+//
+//                    SettingsView(roleSelected: { role in
+//                        selectedRole = role
+//                    })
+//                    .tabItem(){
+//                        Image(systemName: "gearshape")
+//                        Text("Settings")
+//                    }
                 }
+                .accentColor(.blue)
             }
-            .accentColor(.blue)
         }
     }
-}
+
 
 
 struct ContentView_Previews: PreviewProvider {

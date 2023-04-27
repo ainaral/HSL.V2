@@ -59,6 +59,7 @@ struct WelcomeScreenView: View  {
                 }
                 .onAppear {
                     model.requestLocationAuthorization()
+                    enableLocation = true
                 }
                 .padding(.top, 30)
                 .padding(.horizontal, 50)
@@ -97,14 +98,14 @@ struct WelcomeScreenView: View  {
                 
                 // Continue button
                 NavigationLink(
-                    //                    destination: Group {
-                    //                    if selectedRole == "Passenger" {
-                    //                        PassengerView()
-                    //                    } else {
-                    //                        DriverView()
-                    //                    }
-                    //                }
-                    destination: HomeView(selectedRole: selectedRole)
+//                    destination: Group {
+//                        if selectedRole == "Passenger" {
+//                            MainView()
+//                        } else {
+//                            MainView()
+//                        }
+//                    }
+                    destination: MainView(userRole: selectedRole)
                 ) {
                     Text("Continue")
                         .foregroundColor(.white)
