@@ -21,7 +21,8 @@ extension UserDefaults {
 struct MainView: View {
     
     @State private var selectedRole: String = "Passenger"
-    @State public var userRole: String
+    @State public var userRole: String = ""
+    
     var body: some View {
         if UserDefaults.standard.welcomeScreenShown {
             TabView {
