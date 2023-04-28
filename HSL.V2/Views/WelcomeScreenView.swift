@@ -10,6 +10,7 @@ import UserNotifications
 
 struct WelcomeScreenView: View  {
     @StateObject private var model = WelcomeScreenModel()
+    @StateObject private var viewModel = SettingsViewModel()
     // User input variables
     @State private var name = ""
     private let roles: [String] = [
@@ -57,21 +58,22 @@ struct WelcomeScreenView: View  {
                             .font(.headline)
                     }
                 }
-                .onAppear {
+                /*.onAppear {
                     model.requestLocationAuthorization()
                     enableLocation = true
-                }
+                }*/
                 .padding(.top, 30)
                 .padding(.horizontal, 50)
                 .foregroundColor(.white)
                 
                 // Notification toggle
                 VStack {
-                    Toggle(isOn: $isNotificationEnabled) {
+                    Toggle(isOn: $notifications) {
                         Text("Enable Notifications")
+                            .font(.headline)
                     }
                 }
-                .onAppear {
+                /*/.onAppear {
                     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
                         if granted {
                             self.isNotificationEnabled = true
@@ -79,7 +81,7 @@ struct WelcomeScreenView: View  {
                             self.isNotificationEnabled = false
                         }
                     }
-                }
+                }*/
                 .padding(.top, 30)
                 .padding(.horizontal, 50)
                 .foregroundColor(.white)

@@ -19,6 +19,8 @@ extension UserPreferences {
     @NSManaged public var language: String?
     @NSManaged public var role: String?
     @NSManaged public var fullName: String?
+    @NSManaged public var notications: Bool
+    @NSManaged public var location: Bool
 
 }
 

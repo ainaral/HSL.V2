@@ -41,12 +41,16 @@ class SettingsViewModel: ObservableObject {
             preferences.fullName = fullName
             preferences.role = selectedRole
             preferences.language = selectedLanguage
+            preferences.location = location
+            preferences.notications = sendNotifications
         } else {
             // Create a new entity with the new information
             let newPreferences = UserPreferences(context: context)
             newPreferences.fullName = fullName
             newPreferences.role = selectedRole
             newPreferences.language = selectedLanguage
+            newPreferences.location = location
+            newPreferences.notications = sendNotifications
         }
         
         do {
@@ -64,6 +68,8 @@ class SettingsViewModel: ObservableObject {
                 fullName = preferences.fullName ?? ""
                 selectedRole = preferences.role ?? ""
                 selectedLanguage = preferences.language ?? ""
+                location = preferences.location
+                sendNotifications = preferences.notications
                 //sendNotifications = preferences.sendNotifications
                 //location = preferences.location
             }
@@ -81,14 +87,20 @@ class SettingsViewModel: ObservableObject {
                 fullName = preferences.fullName ?? ""
                 selectedRole = preferences.role ?? ""
                 selectedLanguage = preferences.language ?? ""
+                location = preferences.location
+                sendNotifications = preferences.notications
                 print("Full Name: \(preferences.fullName ?? "")")
                 print("Role: \(preferences.role ?? "")")
                 print("Language: \(preferences.language ?? "")")
+                print("Location: \(preferences.location)")
+                print("Notifications: \(preferences.notications)")
             } else {
                 let newUserPreference = UserPreferences(context: context)
                 newUserPreference.fullName = fullName
                 newUserPreference.role = selectedRole
                 newUserPreference.language = selectedLanguage
+                newUserPreference.location = location
+                newUserPreference.notications = sendNotifications
                 try context.save()
             }
         } catch {

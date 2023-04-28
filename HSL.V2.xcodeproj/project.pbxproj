@@ -94,7 +94,6 @@
 				43507A9529ED589100BDDA28 /* BusModel.swift */,
 				6A9A926129E9DAF700DA6563 /* SpeechRecognizer.swift */,
 				4395E7B529F7229500A5B3DF /* CoreDataManager.swift */,
-				4395E7B729F7230100A5B3DF /* MarkerModel.xcdatamodeld */,
 				19639CC029F6677300E12A2C /* WelcomeScreenModel.swift */,
 			);
 			path = Models;

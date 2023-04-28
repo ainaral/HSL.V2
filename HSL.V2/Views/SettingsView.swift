@@ -12,6 +12,8 @@ struct SettingsView: View {
     
     @StateObject private var viewModel = SettingsViewModel()
 
+    // @StateObject private var model = WelcomeScreenModel()
+    
     var roleSelected: ((String) -> Void)? // callback function
     
     init(roleSelected: ((String) -> Void)? = nil) {
