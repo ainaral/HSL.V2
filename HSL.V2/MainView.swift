@@ -20,18 +20,19 @@ extension UserDefaults {
 
 struct MainView: View {
     
+    @StateObject var settingsModel = SettingsViewModel()
     //@State private var selectedRole: String = "Passenger"
     @State public var userRole: String = ""
     
     var body: some View {
         if UserDefaults.standard.welcomeScreenShown {
             TabView {
-                HomeView(selectedRole: userRole)
+                HomeView(settingsModel: settingsModel)
                     .tabItem(){
                         Image(systemName: "house.fill")
                         Text("Home")
                     }
-                    .navigationBarHidden(true)
+                    //.navigationBarHidden(true)
                 
                 SpeechRecognizerView()
                     .tabItem(){
