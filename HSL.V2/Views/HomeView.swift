@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    // let selectedRole: String
     @StateObject private var settingsModel = SettingsViewModel()
     
     var body: some View {

@@ -16,12 +16,10 @@ struct WelcomeScreenView: View {
     @State private var termsAccepted = false
     @State private var showMainView = false
 
-    
     var roleSelected: ((String) -> Void)? // callback function
     
     init(roleSelected: ((String) -> Void)? = nil) {
         self.roleSelected = roleSelected
-        // viewModel.fetchUserPreferences()
     }
     
     var body: some View {

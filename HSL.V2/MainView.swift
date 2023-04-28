@@ -21,7 +21,6 @@ extension UserDefaults {
 struct MainView: View {
     
     @StateObject var settingsModel = SettingsViewModel()
-    //@State private var selectedRole: String = "Passenger"
     @State public var userRole: String = ""
     
     var body: some View {
@@ -32,7 +31,6 @@ struct MainView: View {
                         Image(systemName: "house.fill")
                         Text("Home")
                     }
-                    //.navigationBarHidden(true)
                 
                 SpeechRecognizerView()
                     .tabItem(){
@@ -54,7 +52,6 @@ struct MainView: View {
                 WelcomeScreenView()
             }
         }
-            //.accentColor(.blue)
     }
   
     struct ContentView_Previews: PreviewProvider {
