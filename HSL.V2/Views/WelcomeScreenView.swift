@@ -8,23 +8,21 @@
 import SwiftUI
 import UserNotifications
 
-struct WelcomeScreenView: View  {
-    @StateObject private var model = WelcomeScreenModel()
-    @StateObject private var viewModel = SettingsViewModel()
-    // User input variables
-    @State private var name = ""
-    private let roles: [String] = [
-        "Passenger",
-        "Driver"
-    ]
-    @State private var notifications = false
-    @State private var selectedRole = "Passenger"
-    @State private var termsAccepted = false
-    @State private var isNotificationEnabled = false
-    @State private var enableLocation = false
-    @AppStorage("welcomeScreenShown")
-    var welcomeScreenShown: Bool = false
+struct WelcomeScreenView: View {
     
+    @StateObject private var settingsModel = SettingsViewModel()
+    @StateObject private var welcomeModel = WelcomeScreenModel()
+    
+    @State private var termsAccepted = false
+    @State private var showMainView = false
+
+    
+    var roleSelected: ((String) -> Void)? // callback function
+    
+    init(roleSelected: ((String) -> Void)? = nil) {
+        self.roleSelected = roleSelected
+        // viewModel.fetchUserPreferences()
+    }
     
     var body: some View {
         NavigationView {
@@ -40,7 +38,7 @@ struct WelcomeScreenView: View  {
                 VStack(alignment: .leading) {
                     Text("Sign in as")
                         .font(.headline)
-                    Picker(selection: $selectedRole, label: Text("")) {
+                    Picker(selection: $settingsModel.selectedRole, label: Text("")) {
                         Text("Passenger").tag("Passenger")
                         Text("Driver").tag("Driver")
                     }
@@ -50,42 +48,27 @@ struct WelcomeScreenView: View  {
                 .padding(.horizontal, 50)
                 .foregroundColor(.white)
                 
-                
                 // Location toggle
                 VStack(alignment: .leading) {
-                    Toggle(isOn: $enableLocation) {
+                    Toggle(isOn: $settingsModel.location) {
                         Text("Allow access to your location")
                             .font(.headline)
                     }
                 }
-                /*.onAppear {
-                    model.requestLocationAuthorization()
-                    enableLocation = true
-                }*/
                 .padding(.top, 30)
                 .padding(.horizontal, 50)
                 .foregroundColor(.white)
                 
                 // Notification toggle
                 VStack {
-                    Toggle(isOn: $notifications) {
+                    Toggle(isOn: $settingsModel.sendNotifications) {
                         Text("Enable Notifications")
                             .font(.headline)
                     }
                 }
-                /*/.onAppear {
-                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-                        if granted {
-                            self.isNotificationEnabled = true
-                        } else {
-                            self.isNotificationEnabled = false
-                        }
-                    }
-                }*/
                 .padding(.top, 30)
                 .padding(.horizontal, 50)
                 .foregroundColor(.white)
-                
                 
                 // Terms and conditions checkbox
                 VStack(alignment: .leading) {
@@ -98,17 +81,19 @@ struct WelcomeScreenView: View  {
                 .padding(.horizontal, 50)
                 .foregroundColor(.white)
                 
+                Spacer()
+                
                 // Continue button
-                NavigationLink(
-//                    destination: Group {
-//                        if selectedRole == "Passenger" {
-//                            MainView()
-//                        } else {
-//                            MainView()
-//                        }
-//                    }
-                    destination: MainView(userRole: selectedRole)
-                ) {
+                Button(action: {
+                    do {
+                        // Call the method to save the user's preferences
+                        try settingsModel.saveUserPreferences()
+                        self.termsAccepted = true
+                    } catch {
+                        print("Error saving user preferences: \(error.localizedDescription)")
+                    }
+                    self.showMainView = true
+                }) {
                     Text("Continue")
                         .foregroundColor(.white)
                         .font(.headline)
@@ -121,19 +106,24 @@ struct WelcomeScreenView: View  {
                 .disabled(!termsAccepted)
                 .opacity(termsAccepted ? 1.0 : 0.5)
                 .padding(.top, 30)
+                .fullScreenCover(isPresented: $showMainView) {
+                    MainView(userRole: settingsModel.selectedRole)
+                }
+                .padding(.top, 30)
+                
+                Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity) // 1
             .background(Color.blue)
-            
         }
         .onAppear(perform: {
             UserDefaults.standard.welcomeScreenShown = true
         })
     }
-}
     
-struct WelcomeScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeScreenView()
+    struct WelcomeScreenView_Previews: PreviewProvider {
+        static var previews: some View {
+            WelcomeScreenView()
+        }
     }
 }

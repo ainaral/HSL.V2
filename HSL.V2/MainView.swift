@@ -20,7 +20,7 @@ extension UserDefaults {
 
 struct MainView: View {
     
-    @State private var selectedRole: String = "Passenger"
+    //@State private var selectedRole: String = "Passenger"
     @State public var userRole: String = ""
     
     var body: some View {
@@ -51,53 +51,14 @@ struct MainView: View {
         } else {
             NavigationView {
                 WelcomeScreenView()
-//                TabView {
-//                    HomeView(selectedRole: selectedRole)
-//                        .tabItem(){
-//                            Image(systemName: "house.fill")
-//                            Text("Home")
-//                        }
-//                        .navigationBarHidden(true)
-//
-//                    SpeechRecognizerView()
-//                        .tabItem(){
-//                            Image(systemName: "mic")
-//                            Text("Mic")
-//                        }
-//
-//                    SettingsView(roleSelected: { role in
-//                        selectedRole = role
-//                    })
-//                    .tabItem(){
-//                        Image(systemName: "gearshape")
-//                        Text("Settings")
-//                    }
-                }
-                .accentColor(.blue)
             }
         }
+            //.accentColor(.blue)
     }
-
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeScreenView()
+  
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            WelcomeScreenView()
+        }
     }
 }
-
-/*
- // Fetch the user preference from Core Data
- let request: NSFetchRequest<UserPreference> = UserPreference.fetchRequest()
- let preferences = try? context.fetch(request)
-
- // Check the user preference and load the appropriate view
- if let userPreference = preferences?.first {
-     if userPreference.role == "driver" {
-         performSegue(withIdentifier: "showDriverView", sender: self)
-     } else if userPreference.role == "passenger" {
-         performSegue(withIdentifier: "showPassengerView", sender: self)
-     }
- }
-
- */
