@@ -40,7 +40,10 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     // get the stops
     @Published var stops = [Stop]()
-      
+    
+    // current location
+    @Published var currentLocation: CLLocationCoordinate2D?
+    
     // check if the location services is enabled
     func checkIfLocationServicesIsEnabled() {
         if CLLocationManager.locationServicesEnabled() {
@@ -74,6 +77,18 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
+    }
+    
+    // current location
+    func setLocationOnMap(mapView: MKMapView) {
+        if let location = currentLocation {
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
+            mapView.setRegion(region, animated: true)
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            mapView.addAnnotation(annotation)
+        }
     }
 }
 
