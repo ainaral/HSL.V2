@@ -44,6 +44,9 @@ struct WelcomeScreenView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                 }
+                .onAppear {
+                    settingsModel.selectedRole = "Passenger"
+                }
                 .padding(.top, 30)
                 .padding(.horizontal, 50)
                 .foregroundColor(.white)

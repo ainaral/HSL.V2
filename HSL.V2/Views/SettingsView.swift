@@ -26,8 +26,10 @@ struct SettingsView: View {
             List {
                 Section(header: Text("My information")){
                     TextField("Full Name", text: $viewModel.fullName)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .disableAutocorrection(true)
                     HStack {
-                        Picker("I am a", selection: $viewModel.selectedRole) {
+                        Picker("Choose a role", selection: $viewModel.selectedRole) {
                             ForEach(viewModel.roles, id: \.self) { role in
                                 Text(role)
                                     .tag(role)
