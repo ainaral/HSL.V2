@@ -11,7 +11,8 @@ import MapKit
 struct DriverView: View {
 
     @StateObject private var viewModel = DriverViewModel()
-
+    var mapView = MKMapView()
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -25,6 +26,7 @@ struct DriverView: View {
                 }
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
@@ -39,8 +41,18 @@ extension DriverView {
         Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
             .accentColor(Color(.systemPink))
             .onAppear {
+                viewModel.setLocationOnMap(mapView: mapView)
                 viewModel.checkIfLocationServicesIsEnabled()
             }
+            .onChange(of: viewModel.currentLocation) { _ in
+                viewModel.setLocationOnMap(mapView: mapView)
+            }
+    }
+}
+
+extension CLLocationCoordinate2D: Equatable {
+    public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
     }
 }
 
