@@ -16,6 +16,7 @@ struct SettingsView: View {
     
     init(roleSelected: ((String) -> Void)? = nil) {
         self.roleSelected = roleSelected
+        // viewModel.fetchUserPreferences()
     }
     
     var body: some View {
@@ -72,13 +73,11 @@ struct SettingsView: View {
                             Text("Save")
                         }
                 }
-                
                 .navigationTitle("Settings")
-                
             }
-            
-            
-            
+        }
+        .onAppear{
+            viewModel.fetchUserPreferences()
         }
     }
     

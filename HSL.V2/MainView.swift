@@ -44,3 +44,19 @@ struct ContentView_Previews: PreviewProvider {
         MainView()
     }
 }
+
+/*
+ // Fetch the user preference from Core Data
+ let request: NSFetchRequest<UserPreference> = UserPreference.fetchRequest()
+ let preferences = try? context.fetch(request)
+
+ // Check the user preference and load the appropriate view
+ if let userPreference = preferences?.first {
+     if userPreference.role == "driver" {
+         performSegue(withIdentifier: "showDriverView", sender: self)
+     } else if userPreference.role == "passenger" {
+         performSegue(withIdentifier: "showPassengerView", sender: self)
+     }
+ }
+
+ */
