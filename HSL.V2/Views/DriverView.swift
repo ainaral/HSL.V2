@@ -41,12 +41,12 @@ extension DriverView {
         Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
             .accentColor(Color(.systemPink))
             .onAppear {
-                viewModel.setLocationOnMap(mapView: mapView)
+//                viewModel.setLocationOnMap(mapView: mapView)
                 viewModel.checkIfLocationServicesIsEnabled()
             }
-            .onChange(of: viewModel.currentLocation) { _ in
-                viewModel.setLocationOnMap(mapView: mapView)
-            }
+//            .onChange(of: viewModel.currentLocation) { _ in
+//                viewModel.setLocationOnMap(mapView: mapView)
+//            }
     }
 }
 
@@ -62,68 +62,69 @@ struct SearchBarView: View {
     @ObservedObject private var viewModel = DriverViewModel()
     
     var body: some View {
-            VStack {
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .opacity(searchText.isEmpty ? 1.0 : 0.0)
-                        .foregroundColor(Color.theme.blue)
-                    TextField("Search by your bus number...", text: $searchText)
-                        .disableAutocorrection(true)
-                        .onChange(of: searchText) { searchText in
-                            viewModel.searchText = searchText
-                        }
-                        .overlay(
-                            HStack {
-                                Image(systemName: "magnifyingglass")
-                                    .offset(x: 10)
-                                    .opacity(searchText.isEmpty ? 0.0 : 1.0)
-                                    .foregroundColor(Color.theme.blue)
-                                    .onTapGesture {
-                                        viewModel.fetchData(queryType: .busesByNumber(search: searchText))
-                                    }
-//                                    .alert(isPresented: $viewModel.showAlert) {
-//                                        Alert(title: Text("No bus"), message: Text("Please check your bus"), dismissButton: .default(Text("OK")))
-//                                    }
-
-                                Image(systemName: "xmark.circle.fill")
-                                    .padding()
-                                    .offset(x: 10)
-                                    .opacity(searchText.isEmpty ? 0.0 : 1.0)
-                                    .foregroundColor(Color.theme.blue)
-                                    .onTapGesture {
-                                        UIApplication.shared.endEditing()
-                                        searchText = ""
-                                        viewModel.showBusList = false
-                                    }
-                            }
-                            , alignment: .trailing
-                        )
-                }
-                .font(.headline)
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 25)
-                        .fill(Color.white)
-                        .shadow(
-                            color: Color.black.opacity(0.8),
-                            radius: 10, x: 0, y:0)
-                )
-                .padding(.horizontal)
-                
-                
-                if viewModel.showBusList {
-                    if let buses = viewModel.buses as [Bus]? {
-                        List(buses, id: \.gtfsId) { bus in
-                            NavigationLink(
-                                bus.shortName,
-                                destination:
-                                    MapView(busName: bus.shortName, selectedBus: bus.shortName)
-                                        .ignoresSafeArea()
-                            )
-                        }
-                        .listStyle(PlainListStyle())
+        VStack {
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .opacity(searchText.isEmpty ? 1.0 : 0.0)
+                    .foregroundColor(Color.theme.blue)
+                TextField("Search by your bus number...", text: $searchText)
+                    .disableAutocorrection(true)
+                    .onChange(of: searchText) { searchText in
+                        viewModel.searchText = searchText
                     }
+                    .overlay(
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .offset(x: 10)
+                                .opacity(searchText.isEmpty ? 0.0 : 1.0)
+                                .foregroundColor(Color.theme.blue)
+                                .onTapGesture {
+                                    viewModel.fetchData(queryType: .busesByNumber(search: searchText))
+                                }
+                            //                                    .alert(isPresented: $viewModel.showAlert) {
+                            //                                        Alert(title: Text("No bus"), message: Text("Please check your bus"), dismissButton: .default(Text("OK")))
+                            //                                    }
+                            
+                            Image(systemName: "xmark.circle.fill")
+                                .padding()
+                                .offset(x: 10)
+                                .opacity(searchText.isEmpty ? 0.0 : 1.0)
+                                .foregroundColor(Color.theme.blue)
+                                .onTapGesture {
+                                    UIApplication.shared.endEditing()
+                                    searchText = ""
+                                    viewModel.showBusList = false
+                                }
+                        }
+                        , alignment: .trailing
+                    )
+            }
+            .font(.headline)
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(Color.white)
+                    .shadow(
+                        color: Color.black.opacity(0.8),
+                        radius: 10, x: 0, y:0)
+            )
+            .padding(.horizontal)
+            
+            
+            if viewModel.showBusList {
+                if let buses = viewModel.buses as [Bus]? {
+                    List(buses, id: \.gtfsId) { bus in
+                        NavigationLink(
+                            bus.shortName,
+                            destination:
+                                MapView(busName: bus.shortName, selectedBus: bus.shortName)
+                                .ignoresSafeArea()
+                        )
+                    }
+                    .listStyle(PlainListStyle())
                 }
+            }
         }
     }
 }
+

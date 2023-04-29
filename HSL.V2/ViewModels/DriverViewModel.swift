@@ -80,16 +80,16 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     // current location
-    func setLocationOnMap(mapView: MKMapView) {
-        if let location = currentLocation {
-            let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
-            mapView.setRegion(region, animated: true)
-            
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = location
-            mapView.addAnnotation(annotation)
-        }
-    }
+//    func setLocationOnMap(mapView: MKMapView) {
+//        if let location = currentLocation {
+//            let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
+//            mapView.setRegion(region, animated: true)
+//
+//            let annotation = MKPointAnnotation()
+//            annotation.coordinate = location
+//            mapView.addAnnotation(annotation)
+//        }
+//    }
 }
 
 extension DriverViewModel {
