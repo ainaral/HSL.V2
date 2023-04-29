@@ -56,6 +56,7 @@ class SettingsViewModel: ObservableObject {
         do {
             try context.save()
             print("User preferences saved.")
+            fetchUserPreferences()
         } catch {
             print("Error saving user preferences: \(error.localizedDescription)")
             throw error

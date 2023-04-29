@@ -68,6 +68,7 @@ struct SettingsView: View {
                         
                         do {
                             try viewModel.saveUserPreferences()
+                            viewModel.fetchUserPreferences()
                         } catch {
                             print("Error deleting user preferences: \(error.localizedDescription)")
                         }                    }) {

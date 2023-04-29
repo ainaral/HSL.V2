@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject private var settingsModel = SettingsViewModel()
-    //@ObservedObject private var settingsManager = SettingsManager.shared
-    //@ObservedObject var settingsManager = SettingsManager.shared
-    //@EnvironmentObject var settingsModel: SettingsViewModel
+    @ObservedObject var settingsModel: SettingsViewModel
     
     var body: some View {
         if settingsModel.selectedRole == "Passenger" {
@@ -21,13 +18,11 @@ struct HomeView: View {
         }
     }
 }
-    struct HomeView_Previews: PreviewProvider {
-        static var previews: some View {
-            //let settingsManager = SettingsManager()
-            //HomeView(settingsManager: settingsManager)
-            //let settingsModel = SettingsViewModel()
-            //HomeView(settingsModel.selectedRole)
-            HomeView()
-        }
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        //HomeView()
+        let settingsModel = SettingsViewModel()
+        return HomeView(settingsModel: settingsModel)
     }
+}
 
