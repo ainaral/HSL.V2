@@ -21,12 +21,14 @@ extension UserDefaults {
 struct MainView: View {
     
     @StateObject var settingsModel = SettingsViewModel()
+    //@ObservableObject var settingsManager = SettingsManager.shared
     @State public var userRole: String = ""
     
     var body: some View {
         if UserDefaults.standard.welcomeScreenShown {
             TabView {
-                HomeView(settingsModel: settingsModel)
+                HomeView()
+                //HomeView(settingsModel: settingsModel)
                     .tabItem(){
                         Image(systemName: "house.fill")
                         Text("Home")
