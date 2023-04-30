@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19639CC129F6677300E12A2C /* WelcomeScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19639CC029F6677300E12A2C /* WelcomeScreenModel.swift */; };
+		19B53F9E29E4B4AC007FAA10 /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B53F9D29E4B4AC007FAA10 /* WelcomeScreenView.swift */; };
 		4306300529E9447E009D678D /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306300429E9447E009D678D /* RouteModel.swift */; };
 		4344636629EF21B200C348CE /* Polyline in Frameworks */ = {isa = PBXBuildFile; productRef = 4344636529EF21B200C348CE /* Polyline */; };
 		4344636829EF260900C348CE /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4344636729EF260900C348CE /* MapView.swift */; };
@@ -15,6 +17,8 @@
 		43507A9629ED589100BDDA28 /* BusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43507A9529ED589100BDDA28 /* BusModel.swift */; };
 		436A0ACA29DF16A50008F5A8 /* DriverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A0AC929DF16A50008F5A8 /* DriverView.swift */; };
 		436A0ACE29DF50710008F5A8 /* DriverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A0ACD29DF50710008F5A8 /* DriverViewModel.swift */; };
+		4395E7B629F7229500A5B3DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4395E7B529F7229500A5B3DF /* CoreDataManager.swift */; };
+		4395E7B929F7230100A5B3DF /* (null) in Sources */ = {isa = PBXBuildFile; };
 		43E77AF329F5CBA200255C57 /* PassengerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E77AF229F5CBA200255C57 /* PassengerViewModel.swift */; };
 		43E77AF529F5DF0300255C57 /* MapViewPassenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E77AF429F5DF0300255C57 /* MapViewPassenger.swift */; };
 		43E77AF729F5DFD200255C57 /* MapViewPassengerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E77AF629F5DFD200255C57 /* MapViewPassengerCoordinator.swift */; };
@@ -31,10 +35,17 @@
 		6AB5D7AD29D18E9400AE8072 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AB5D7AC29D18E9400AE8072 /* Preview Assets.xcassets */; };
 		6ABEBC2029ED5DAE00DA170B /* PassengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABEBC1F29ED5DAE00DA170B /* PassengerView.swift */; };
 		6ABEBC2229ED5DE900DA170B /* SearchPassengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABEBC2129ED5DE900DA170B /* SearchPassengerView.swift */; };
+		6AD8284229EFFEA4001E9336 /* HSLModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6AD8284029EFFEA4001E9336 /* HSLModel.xcdatamodeld */; };
+		6AD8284F29F5462C001E9336 /* UserPreferences+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD8284D29F5462C001E9336 /* UserPreferences+CoreDataClass.swift */; };
+		6AD8285029F5462C001E9336 /* UserPreferences+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD8284E29F5462C001E9336 /* UserPreferences+CoreDataProperties.swift */; };
+		6AD8285629FA686F001E9336 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD8285529FA686F001E9336 /* SettingsViewModel.swift */; };
+		6AD8285E29FC5DB2001E9336 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD8285D29FC5DB2001E9336 /* SettingsManager.swift */; };
 		6AE2655D29F7107A00C5C019 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2655C29F7107A00C5C019 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19639CC029F6677300E12A2C /* WelcomeScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenModel.swift; sourceTree = "<group>"; };
+		19B53F9D29E4B4AC007FAA10 /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		4306300429E9447E009D678D /* RouteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteModel.swift; sourceTree = "<group>"; };
 		4344636729EF260900C348CE /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		4344636929EF267200C348CE /* MapViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewCoordinator.swift; sourceTree = "<group>"; };
@@ -42,6 +53,7 @@
 		43507A9529ED589100BDDA28 /* BusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusModel.swift; sourceTree = "<group>"; };
 		436A0AC929DF16A50008F5A8 /* DriverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverView.swift; sourceTree = "<group>"; };
 		436A0ACD29DF50710008F5A8 /* DriverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewModel.swift; sourceTree = "<group>"; };
+		4395E7B529F7229500A5B3DF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		43E77AF229F5CBA200255C57 /* PassengerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerViewModel.swift; sourceTree = "<group>"; };
 		43E77AF429F5DF0300255C57 /* MapViewPassenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewPassenger.swift; sourceTree = "<group>"; };
 		43E77AF629F5DFD200255C57 /* MapViewPassengerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewPassengerCoordinator.swift; sourceTree = "<group>"; };
@@ -60,6 +72,11 @@
 		6AB5D7AC29D18E9400AE8072 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6ABEBC1F29ED5DAE00DA170B /* PassengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerView.swift; sourceTree = "<group>"; };
 		6ABEBC2129ED5DE900DA170B /* SearchPassengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPassengerView.swift; sourceTree = "<group>"; };
+		6AD8284129EFFEA4001E9336 /* HSLModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HSLModel.xcdatamodel; sourceTree = "<group>"; };
+		6AD8284D29F5462C001E9336 /* UserPreferences+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPreferences+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6AD8284E29F5462C001E9336 /* UserPreferences+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPreferences+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6AD8285529FA686F001E9336 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		6AD8285D29FC5DB2001E9336 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		6AE2655C29F7107A00C5C019 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,9 +95,14 @@
 		4306300329E9445A009D678D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6AD8284D29F5462C001E9336 /* UserPreferences+CoreDataClass.swift */,
+				6AD8284E29F5462C001E9336 /* UserPreferences+CoreDataProperties.swift */,
 				4306300429E9447E009D678D /* RouteModel.swift */,
 				43507A9529ED589100BDDA28 /* BusModel.swift */,
 				6A9A926129E9DAF700DA6563 /* SpeechRecognizer.swift */,
+				4395E7B529F7229500A5B3DF /* CoreDataManager.swift */,
+				19639CC029F6677300E12A2C /* WelcomeScreenModel.swift */,
+				6AD8285D29FC5DB2001E9336 /* SettingsManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -101,6 +123,7 @@
 				4344636929EF267200C348CE /* MapViewCoordinator.swift */,
 				43E77AF229F5CBA200255C57 /* PassengerViewModel.swift */,
 				43E77AF629F5DFD200255C57 /* MapViewPassengerCoordinator.swift */,
+				6AD8285529FA686F001E9336 /* SettingsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -117,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				6A7F884429D5F26600DC60BF /* SettingsView.swift */,
+				19B53F9D29E4B4AC007FAA10 /* WelcomeScreenView.swift */,
 				6A7F884629D5FD7700DC60BF /* AboutUsView.swift */,
 				6A7F884929D6250D00DC60BF /* HomeView.swift */,
 				436A0AC929DF16A50008F5A8 /* DriverView.swift */,
@@ -150,7 +174,11 @@
 		6AB5D7A429D18E9200AE8072 /* HSL.V2 */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				6A1F808829EE839A00A6CB22 /* Managers */,
+=======
+				6AD8285129F6A4CF001E9336 /* CoreData */,
+>>>>>>> HSL
 				43507A9229ED582C00BDDA28 /* Extensions */,
 				4306300329E9445A009D678D /* Models */,
 				436A0ACC29DF50640008F5A8 /* ViewModels */,
@@ -169,6 +197,14 @@
 				6AB5D7AC29D18E9400AE8072 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6AD8285129F6A4CF001E9336 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6AD8284029EFFEA4001E9336 /* HSLModel.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,13 +286,18 @@
 				436A0ACE29DF50710008F5A8 /* DriverViewModel.swift in Sources */,
 				6A6F5AD629FA7F5F00DD3C54 /* PassengerSearchActivationView.swift in Sources */,
 				6AE2655D29F7107A00C5C019 /* Colors.swift in Sources */,
+				4395E7B929F7230100A5B3DF /* (null) in Sources */,
 				6ABEBC2029ED5DAE00DA170B /* PassengerView.swift in Sources */,
 				436A0ACA29DF16A50008F5A8 /* DriverView.swift in Sources */,
 				6A7F884C29D6253F00DC60BF /* SpeechRecognizerView.swift in Sources */,
 				4344636A29EF267300C348CE /* MapViewCoordinator.swift in Sources */,
 				43E77AF729F5DFD200255C57 /* MapViewPassengerCoordinator.swift in Sources */,
+				19B53F9E29E4B4AC007FAA10 /* WelcomeScreenView.swift in Sources */,
 				6A7F884C29D6253F00DC60BF /* SpeechRecognizerView.swift in Sources */,
 				43507A9629ED589100BDDA28 /* BusModel.swift in Sources */,
+				4395E7B629F7229500A5B3DF /* CoreDataManager.swift in Sources */,
+				19639CC129F6677300E12A2C /* WelcomeScreenModel.swift in Sources */,
+				6AD8284229EFFEA4001E9336 /* HSLModel.xcdatamodeld in Sources */,
 				6ABEBC2229ED5DE900DA170B /* SearchPassengerView.swift in Sources */,
 				4344636829EF260900C348CE /* MapView.swift in Sources */,
 				4306300529E9447E009D678D /* RouteModel.swift in Sources */,
@@ -266,11 +307,15 @@
 				6A7F884529D5F26600DC60BF /* SettingsView.swift in Sources */,
 				6AB5D7A829D18E9200AE8072 /* MainView.swift in Sources */,
 				6A7F884729D5FD7700DC60BF /* AboutUsView.swift in Sources */,
+				6AD8285029F5462C001E9336 /* UserPreferences+CoreDataProperties.swift in Sources */,
 				6A7F884A29D6250D00DC60BF /* HomeView.swift in Sources */,
 				43E77AF329F5CBA200255C57 /* PassengerViewModel.swift in Sources */,
 				43507A9429ED584000BDDA28 /* UIApplication.swift in Sources */,
 				43E77AF529F5DF0300255C57 /* MapViewPassenger.swift in Sources */,
 				6AB5D7A629D18E9200AE8072 /* HSL_V2App.swift in Sources */,
+				6AD8285E29FC5DB2001E9336 /* SettingsManager.swift in Sources */,
+				6AD8284F29F5462C001E9336 /* UserPreferences+CoreDataClass.swift in Sources */,
+				6AD8285629FA686F001E9336 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +541,19 @@
 			productName = Polyline;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		6AD8284029EFFEA4001E9336 /* HSLModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6AD8284129EFFEA4001E9336 /* HSLModel.xcdatamodel */,
+			);
+			currentVersion = 6AD8284129EFFEA4001E9336 /* HSLModel.xcdatamodel */;
+			path = HSLModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6AB5D79A29D18E9200AE8072 /* Project object */;
 }

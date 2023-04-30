@@ -41,7 +41,10 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     // get the stops
     @Published var stops = [Stop]()
-      
+    
+    // current location
+    @Published var currentLocation: CLLocationCoordinate2D?
+    
     // check if the location services is enabled
     func checkIfLocationServicesIsEnabled() {
         if CLLocationManager.locationServicesEnabled() {
@@ -75,6 +78,18 @@ class DriverViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
+    }
+    
+    // current location
+    func setLocationOnMap(mapView: MKMapView) {
+        if let location = currentLocation {
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
+            mapView.setRegion(region, animated: true)
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            mapView.addAnnotation(annotation)
+        }
     }
 }
 
@@ -173,5 +188,12 @@ extension DriverViewModel {
         let polyline = Polyline(encodedPolyline: patternGeometry, encodedLevels: "BA")
         guard let decodedLocations = polyline.locations else { return }
         locations = decodedLocations.map { CLLocationCoordinate2D(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude)}
+    }
+}
+
+extension DriverViewModel {
+    
+    func getMarkerByName(busName: String) -> [Marker] {
+        CoreDataManager.shared.getMarkersByBus(busName: busName)
     }
 }

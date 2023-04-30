@@ -6,49 +6,42 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SettingsView: View {
     
-    private let roles: [String] = [
-        "Passenger",
-        "Driver"
-    ]
-    @State private var selectedRole: String = ""
-    
-    private let languages: [String] = [
-        "English",
-        "Finnish",
-        "Swedish"
-    ]
-    @State private var selectedLanguage: String = ""
-    
-    @AppStorage("firstName") private var firstName = ""
-    @State private var sendNotifications = false
-    @State private var location = false
-    @State private var aboutUs = ""
+    @StateObject private var viewModel = SettingsViewModel()
     
     var roleSelected: ((String) -> Void)? // callback function
+    
+    init(roleSelected: ((String) -> Void)? = nil) {
+        self.roleSelected = roleSelected
+    }
     
     var body: some View {
         NavigationView{
             List {
                 Section(header: Text("My information")){
-                    TextField("Full Name", text: $firstName)
+                    TextField("Full Name", text: $viewModel.fullName)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .disableAutocorrection(true)
                     HStack {
-                        Picker("I am a", selection: $selectedRole) {
-                            ForEach(roles, id: \.self) { role in
+                        Picker("Choose a role", selection: $viewModel.selectedRole) {
+                            ForEach(viewModel.roles, id: \.self) { role in
                                 Text(role)
+                                    .tag(role)
                             }
                         }
-                        .onChange(of: selectedRole) { value in
+                        .onChange(of: viewModel.selectedRole) { value in
                             roleSelected?(value) // call the callback function when role is selected
                         }
                         .foregroundColor(Color.theme.blue)
                     }
                     HStack {
-                        Picker("Choose a language", selection: $selectedLanguage) {
-                            ForEach(languages, id: \.self) { language in
+                        Picker("Choose a language", selection: $viewModel.selectedLanguage) {
+                            ForEach(viewModel.languages, id: \.self) { language in
                                 Text(language)
+                                    .tag(language)
                             }
                         }
                         .foregroundColor(Color.theme.blue)
@@ -56,11 +49,11 @@ struct SettingsView: View {
                     
                 }
                 Section(header:Text ("Notifications")){
-                    Toggle("Notifications", isOn: $sendNotifications)
+                    Toggle("Notifications", isOn: $viewModel.sendNotifications)
                         .foregroundColor(Color.theme.blue)
                 }
                 Section(header:Text ("Location Permission")){
-                    Toggle("Location", isOn: $location)
+                    Toggle("Location", isOn: $viewModel.location)
                         .foregroundColor(Color.theme.blue)
                 }
                 Section(header:Text ("About us")){
@@ -70,10 +63,23 @@ struct SettingsView: View {
                             .foregroundColor(Color.theme.blue)
                     }
                 }
-                
+                Section {
+                    Button(action: {
+                        
+                        do {
+                            try viewModel.saveUserPreferences()
+                            viewModel.fetchUserPreferences()
+                        } catch {
+                            print("Error deleting user preferences: \(error.localizedDescription)")
+                        }                    }) {
+                            Text("Save")
+                        }
+                }
                 .navigationTitle("Settings")
             }
-            .foregroundColor(Color.theme.gray)
+        }
+        .onAppear{
+            viewModel.fetchUserPreferences()
         }
     }
     

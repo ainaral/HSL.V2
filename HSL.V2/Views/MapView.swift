@@ -13,11 +13,13 @@ struct MapView: UIViewRepresentable {
     private var viewModel = DriverViewModel()
     private var busName: String
     private var stops = [Stop]()
+    private var selectedBus: String
     
     private let mapZoomEdgeInsets = UIEdgeInsets(top: 30.0, left: 30.0, bottom: 30.0, right: 30.0)
     
-    init(busName: String) {
+    init(busName: String, selectedBus: String) {
         self.busName = busName
+        self.selectedBus = selectedBus
         viewModel.fetchData(queryType: .routeByBus(search: busName))
     }
     
@@ -43,6 +45,17 @@ struct MapView: UIViewRepresentable {
             annotations.title = stop.name
             annotations.coordinate = CLLocationCoordinate2D(latitude: stop.lat, longitude: stop.lon)
             mapView.addAnnotation(annotations)
+        }
+        
+        // update the annotations from core data
+        let markers = viewModel.getMarkerByName(busName: selectedBus)
+        
+        markers.forEach { marker in
+            let markerAnnotations = MKPointAnnotation()
+            markerAnnotations.title = "Marker"
+            markerAnnotations.coordinate = CLLocationCoordinate2D(latitude: marker.stopLat, longitude: marker.stopLon)
+            print("marker in mapview directly: \(markerAnnotations.coordinate)")
+            mapView.addAnnotation(markerAnnotations)
         }
         return mapView
     }
@@ -71,6 +84,6 @@ struct MapView: UIViewRepresentable {
 struct MapView_Previews: PreviewProvider {
     private var viewModel = DriverViewModel()
   static var previews: some View {
-      MapView(busName: "")
+      MapView(busName: "", selectedBus: "")
   }
 }
