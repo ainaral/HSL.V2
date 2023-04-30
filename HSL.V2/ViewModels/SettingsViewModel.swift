@@ -17,6 +17,10 @@ class SettingsViewModel: ObservableObject {
     @Published var sendNotifications = false
     @Published var location = false
     
+    init(selectedRole: String){
+        self.selectedRole = selectedRole
+    }
+    
     // Reference to managed object context
     let context = CoreDataManager.shared.persistentContainer.viewContext
     
@@ -26,6 +30,10 @@ class SettingsViewModel: ObservableObject {
         didSet {
             fetchUserPreferences()
         }
+    }
+    
+    init() {
+        fetchUserPreferences()
     }
     
     // save data to the core data
@@ -62,7 +70,7 @@ class SettingsViewModel: ObservableObject {
             throw error
         }
         
-        // Fetch the updated preferences from Core Data and update the UI
+        /*// Fetch the updated preferences from Core Data and update the UI
         do {
             let updatedPreferences = try context.fetch(request).first
             if let preferences = updatedPreferences {
@@ -76,10 +84,14 @@ class SettingsViewModel: ObservableObject {
             }
         } catch {
             print("Error fetching user preferences: \(error.localizedDescription)")
-        }
+        }*/
+    }
+    func fetchUserRole() {
+        
     }
     
-    func fetchUserPreferences(){
+    func fetchUserPreferences() {
+        //-> UserPreferences
         // Fetch the data from core data
         let request: NSFetchRequest<UserPreferences> = UserPreferences.fetchRequest()
         do{
@@ -95,6 +107,7 @@ class SettingsViewModel: ObservableObject {
                 print("Language: \(preferences.language ?? "")")
                 print("Location: \(preferences.location)")
                 print("Notifications: \(preferences.notications)")
+               // return preferences
             } else {
                 let newUserPreference = UserPreferences(context: context)
                 newUserPreference.fullName = fullName
@@ -106,14 +119,11 @@ class SettingsViewModel: ObservableObject {
             }
         } catch {
             print("Error fetching user preferences: \(error.localizedDescription)")
+           // return ()
         }
     }
     internal let roles: [String] = ["Passenger", "Driver"]
     internal let languages: [String] = ["English","Finnish","Swedish"]
-    
-    init() {
-        fetchUserPreferences()
-    }
     
     func deleteUserPreferences() throws {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = UserPreferences.fetchRequest()
