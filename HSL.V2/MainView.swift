@@ -25,7 +25,6 @@ struct MainView: View {
     var body: some View {
         if UserDefaults.standard.welcomeScreenShown {
             TabView {
-                //HomeView()
                 HomeView(settingsModel: settingsModel)
                     .tabItem(){
                         Image(systemName: "house.fill")
