@@ -17,7 +17,6 @@ class WelcomeScreenModel: NSObject, CLLocationManagerDelegate, ObservableObject 
     
     override init() {
         super.init()
-        
         locationManager.delegate = self
     }
     

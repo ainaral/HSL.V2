@@ -18,14 +18,14 @@ class CoreDataManager {
     }
     
     private init() {
-        persistentContainer = NSPersistentContainer(name: "MarkerModel")
+        persistentContainer = NSPersistentContainer(name: "HSLModel")
         persistentContainer.loadPersistentStores { (description, error) in
             if let error = error {
                 fatalError("Unable to initialize Core Data Stack \(error)")
             }
         }
     }
-    
+
     // to save the data
     func save() {
         do {

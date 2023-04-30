@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct HomeView: View {
-    let selectedRole: String
+    @ObservedObject var settingsModel: SettingsViewModel
     
     var body: some View {
-        if selectedRole == "Passenger" {
+        if settingsModel.selectedRole == "Passenger" {
             PassengerView()
-        } else if selectedRole == "Driver" {
+        } else if settingsModel.selectedRole == "Driver" {
             DriverView()
         }
     }
 }
-
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(selectedRole: "Passenger")
+        //HomeView()
+        let settingsModel = SettingsViewModel()
+        return HomeView(settingsModel: settingsModel)
     }
 }
+
