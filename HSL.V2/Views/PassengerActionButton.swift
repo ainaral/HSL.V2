@@ -17,14 +17,14 @@ struct PassengerActionButton: View {
                 showSearchView.toggle()
             }
         } label: {
-            Image(systemName: showSearchView ? "map" : "magnifyingglass")
+            Image(systemName: showSearchView ? "arrow.left" : "line.3.horizontal")
                 .font(.title2)
-                .foregroundColor(.black)
+                .foregroundColor(Color.theme.accent)
                 .padding()
                 .background(.white)
     
             .clipShape(Circle())
-                .shadow(color: .black, radius: 4)
+                .shadow(color: .black, radius: 6)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }

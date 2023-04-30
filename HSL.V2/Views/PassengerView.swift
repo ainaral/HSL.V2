@@ -12,14 +12,28 @@ struct PassengerView: View {
     
     @StateObject private var viewModel = PassengerViewModel()
     
+    @State private var showSearchView: Bool = false
+    
     var body: some View {
         NavigationStack {
-            ZStack {
+            ZStack(alignment: .top) {
                 mapLayer
-                    .ignoresSafeArea()
-                VStack {
-                    SearchPassengerView(showSearchView: true)
+                    .edgesIgnoringSafeArea(.top)
+                
+                if showSearchView {
+                    SearchPassengerView(showSearchView: .constant(true))
+                } else {
+                    PassengerSearchActivationView()
+                        .padding(.top, 630)
+                        .onTapGesture {
+                            showSearchView.toggle()
+                        }
                 }
+                
+                PassengerActionButton(showSearchView: $showSearchView)
+                    .padding(.leading)
+                    .padding(.top, 4)
+            
             }
         }
     }

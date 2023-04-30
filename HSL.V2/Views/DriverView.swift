@@ -16,8 +16,7 @@ struct DriverView: View {
         NavigationStack {
             ZStack {
                 mapLayer
-                // .ignoresSafeArea()
-                .edgesIgnoringSafeArea(.top)
+                    .edgesIgnoringSafeArea(.top)
                 VStack {
                     SearchBarView(searchText: $viewModel.searchText)
                         .padding()
@@ -91,7 +90,7 @@ struct SearchBarView: View {
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 25)
-                        .fill(Color.white)
+                        .fill(Color.theme.background)
                         .shadow(
                             color: Color.black.opacity(0.8),
                             radius: 10, x: 0, y:0)
