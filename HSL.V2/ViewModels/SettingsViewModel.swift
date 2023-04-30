@@ -69,30 +69,12 @@ class SettingsViewModel: ObservableObject {
             print("Error saving user preferences: \(error.localizedDescription)")
             throw error
         }
-        
-        /*// Fetch the updated preferences from Core Data and update the UI
-        do {
-            let updatedPreferences = try context.fetch(request).first
-            if let preferences = updatedPreferences {
-                fullName = preferences.fullName ?? ""
-                selectedRole = preferences.role ?? ""
-                selectedLanguage = preferences.language ?? ""
-                location = preferences.location
-                sendNotifications = preferences.notications
-                //sendNotifications = preferences.sendNotifications
-                //location = preferences.location
-            }
-        } catch {
-            print("Error fetching user preferences: \(error.localizedDescription)")
-        }*/
     }
     func fetchUserRole() {
         
     }
     
     func fetchUserPreferences() {
-        //-> UserPreferences
-        // Fetch the data from core data
         let request: NSFetchRequest<UserPreferences> = UserPreferences.fetchRequest()
         do{
             let userPreferences = try context.fetch(request)
@@ -107,7 +89,6 @@ class SettingsViewModel: ObservableObject {
                 print("Language: \(preferences.language ?? "")")
                 print("Location: \(preferences.location)")
                 print("Notifications: \(preferences.notications)")
-               // return preferences
             } else {
                 let newUserPreference = UserPreferences(context: context)
                 newUserPreference.fullName = fullName
@@ -119,7 +100,6 @@ class SettingsViewModel: ObservableObject {
             }
         } catch {
             print("Error fetching user preferences: \(error.localizedDescription)")
-           // return ()
         }
     }
     internal let roles: [String] = ["Passenger", "Driver"]
