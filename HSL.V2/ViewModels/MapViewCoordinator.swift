@@ -39,7 +39,7 @@ final class MapViewCoordinator: NSObject, MKMapViewDelegate {
         }
         
         // give the red pin annotation if user mark the stop
-        if annotation.title == "Marker" {
+        if annotation.title == "Passenger" {
             annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "MarkerAnnotation") as? MKMarkerAnnotationView
             if annotationView == nil {
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MarkerAnnotation")
@@ -61,16 +61,16 @@ final class MapViewCoordinator: NSObject, MKMapViewDelegate {
             annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MKMarkerAnnotationView
             if annotationView == nil {
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-                
+
                 // show the call out
                 annotationView?.canShowCallout = true
-                
+
                 // customize the call out layout
                 let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
                 rightButton.setImage(UIImage(systemName: "pin"), for: .normal)
                 annotationView?.rightCalloutAccessoryView = rightButton
             }
-             
+
             // Customize the blue bus annotation
             annotationView?.markerTintColor = UIColor.clear
             annotationView?.glyphImage = UIImage(systemName: "bus")
