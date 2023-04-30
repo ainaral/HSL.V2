@@ -29,8 +29,21 @@ struct WelcomeScreenView: View {
                 Text("Welcome to HSL.V2")
                     .font(.largeTitle)
                     .bold()
-                    .padding(.top, 100)
+                    .padding(.top, 30)
                     .foregroundColor(.white)
+                
+                // Name input
+                VStack(alignment: .leading) {
+                    TextField("Full Name", text: $settingsModel.fullName)
+                        .padding()
+                        .font(.headline)
+                        .disableAutocorrection(true)
+                        .foregroundColor(.black)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                }
+                .padding(.top, 30)
+                .padding(.horizontal, 50)
                 
                 // Sign in as dropdown
                 VStack(alignment: .leading) {
@@ -73,6 +86,22 @@ struct WelcomeScreenView: View {
                 
                 // Terms and conditions checkbox
                 VStack(alignment: .leading) {
+                    // Terms and conditions text
+                    VStack(alignment: .leading) {
+                        Text("          Terms and Conditions")
+                            .font(.headline)
+                            .foregroundColor(.black)
+                            .padding(3)
+                        ScrollView{
+                            Text("The HSL.V2 Service is a service (\"Online Service\") that the Helsinki Regional Transport Authority (\"HSL\") offers to corporate customers.")
+                                .foregroundColor(.black)
+                        }
+                        .frame(height: 65)
+                    }
+                    .padding(8)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    
                     Toggle(isOn: $termsAccepted) {
                         Text("I accept the Terms and Conditions")
                             .font(.headline)
@@ -110,7 +139,7 @@ struct WelcomeScreenView: View {
                 .fullScreenCover(isPresented: $showMainView) {
                     MainView(userRole: settingsModel.selectedRole)
                 }
-                .padding(.top, 30)
+                .padding(.top, 20)
                 
                 Spacer()
             }
