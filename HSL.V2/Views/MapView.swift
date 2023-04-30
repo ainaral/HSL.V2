@@ -36,25 +36,14 @@ struct MapView: UIViewRepresentable {
         mapView.showsUserLocation = true
         mapView.delegate = context.coordinator
         
-        // get the stops
-        let stops = viewModel.stops
-        
-        // show the annotations for each stops
-        for stop in stops {
-            let annotations = MKPointAnnotation()
-            annotations.title = stop.name
-            annotations.coordinate = CLLocationCoordinate2D(latitude: stop.lat, longitude: stop.lon)
-            mapView.addAnnotation(annotations)
-        }
-        
         // update the annotations from core data
         let markers = viewModel.getMarkerByName(busName: selectedBus)
         
         markers.forEach { marker in
+            print("marker in mapview get specific markers: \(String(describing: marker.busName)) \(marker.stopLat) \(marker.stopLon)")
             let markerAnnotations = MKPointAnnotation()
-            markerAnnotations.title = "Marker"
+            markerAnnotations.title = "Passenger"
             markerAnnotations.coordinate = CLLocationCoordinate2D(latitude: marker.stopLat, longitude: marker.stopLon)
-            print("marker in mapview directly: \(markerAnnotations.coordinate)")
             mapView.addAnnotation(markerAnnotations)
         }
         return mapView
