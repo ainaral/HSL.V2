@@ -74,6 +74,7 @@ struct searchBus: View {
             Divider()
                 .padding(.vertical)
             
+            // List View
             if viewModel.showBusList {
                 if let buses = viewModel.buses as [Bus]? {
                     List(buses, id: \.gtfsId) { bus in
@@ -81,12 +82,12 @@ struct searchBus: View {
                             viewModel.fetchData(queryType: .routeByBus(search: bus.shortName))
                             viewModel.showBusList = false
                             viewModel.showDirectionList = true
-                            viewModel.selectedBus = bus.shortName
                         } label: {
                             Text(bus.shortName)
                         }
                     }
                     .listStyle(PlainListStyle())
+                    .background(Color.theme.background)
                 }
             }
             
@@ -101,11 +102,10 @@ struct searchBus: View {
                                     stopsInfo: viewModel.stops,
                                     selectedBus: viewModel.selectedBus)
                                 .ignoresSafeArea()
-                            
                         )
                     }
                     .listStyle(PlainListStyle())
-                    .padding()
+                    .background(Color.theme.background)
                 }
             }
         }
