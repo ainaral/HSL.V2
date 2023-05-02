@@ -16,7 +16,7 @@ struct  PassengerSearchActivationView: View {
                     .frame(width: 8, height: 8)
                     .padding(.horizontal)
                 
-                Text("Search for bus number")
+                Text(NSLocalizedString("SearchBusNum", comment: ""))
                     .foregroundColor(Color.theme.accent)
                 
                 Spacer()

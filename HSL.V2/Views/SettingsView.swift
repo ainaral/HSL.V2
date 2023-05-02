@@ -22,15 +22,11 @@ struct SettingsView: View {
         NavigationView{
             List {
                 Section(header: Text(NSLocalizedString("MyInformation", comment: ""))){
-                    TextField(NSLocalizedString("FullName", comment: ""), text: $firstName)
-                Section(header: Text("My information")){
-                    TextField("Full Name", text: $viewModel.fullName)
+                    TextField(NSLocalizedString("FullName", comment: ""), text: $viewModel.fullName)
                         .textFieldStyle(PlainTextFieldStyle())
                         .disableAutocorrection(true)
                     HStack {
-                        Picker(NSLocalizedString("Iam", comment: ""), selection: $selectedRole) {
-                            ForEach(roles, id: \.self) { role in
-                        Picker("Choose a role", selection: $viewModel.selectedRole) {
+                        Picker(NSLocalizedString("Iam", comment: ""), selection: $viewModel.selectedRole) {
                             ForEach(viewModel.roles, id: \.self) { role in
                                 Text(role)
                                     .tag(role)
@@ -41,34 +37,18 @@ struct SettingsView: View {
                         }
                         .foregroundColor(Color.theme.blue)
                     }
-//                    HStack {
-//                        Picker(NSLocalizedString("Language", comment: ""), selection: $selectedLanguage) {
-//                            ForEach(languages, id: \.self) { language in
-//                                Text(language)
-//                            }
-//                        }
-//                        .foregroundColor(Color.theme.blue)
-//                    }
-                    
                 }
                 Section(header:Text (NSLocalizedString("Notifications", comment: ""))){
-                    Toggle(NSLocalizedString("Notifications", comment: ""), isOn: $sendNotifications)
+                    Toggle(NSLocalizedString("Notifications", comment: ""), isOn: $viewModel.sendNotifications)
                         .foregroundColor(Color.theme.blue)
                 }
+                
                 Section(header:Text (NSLocalizedString("LocationPermission", comment: ""))){
-                    Toggle(NSLocalizedString("Location", comment: ""), isOn: $location)
+                    Toggle(NSLocalizedString("Location", comment: ""), isOn: $viewModel.location)
                         .foregroundColor(Color.theme.blue)
                 }
+                
                 Section(header:Text (NSLocalizedString("AboutUs", comment: ""))){
-                Section(header:Text ("Notifications")){
-                    Toggle("Notifications", isOn: $viewModel.sendNotifications)
-                        .foregroundColor(Color.theme.blue)
-                }
-                Section(header:Text ("Location Permission")){
-                    Toggle("Location", isOn: $viewModel.location)
-                        .foregroundColor(Color.theme.blue)
-                }
-                Section(header:Text ("About us")){
                     NavigationLink(destination: AboutUsView()) {
                         Label(NSLocalizedString("AboutUs", comment: ""), systemImage: "person.3.fill")
                             .font(.headline)
@@ -84,7 +64,7 @@ struct SettingsView: View {
                         } catch {
                             print("Error deleting user preferences: \(error.localizedDescription)")
                         }                    }) {
-                            Text("Save")
+                            Text(NSLocalizedString("Save", comment: ""))
                         }
                 }
                 .navigationTitle("Settings")

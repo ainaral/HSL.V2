@@ -55,7 +55,7 @@ extension PassengerView {
     }
 }
 
-struct searchBus: View {
+struct SearchBus: View {
     @Binding var searchText: String
     @ObservedObject private var viewModel = PassengerViewModel()
     
@@ -129,11 +129,12 @@ struct searchBus: View {
                                 stopsInfo: viewModel.stops,
                                 selectedBus: viewModel.selectedBus)
                             .ignoresSafeArea()
-                            
+                        
                     )
                 }
                 .listStyle(PlainListStyle())
                 .padding()
             }
+        }
     }
 }
