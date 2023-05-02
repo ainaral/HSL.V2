@@ -45,14 +45,14 @@ struct SettingsView: View {
                         }
                         .foregroundColor(Color.theme.blue)
                     }
-                    HStack {
-                        Picker(NSLocalizedString("Language", comment: ""), selection: $selectedLanguage) {
-                            ForEach(languages, id: \.self) { language in
-                                Text(language)
-                            }
-                        }
-                        .foregroundColor(Color.theme.blue)
-                    }
+//                    HStack {
+//                        Picker(NSLocalizedString("Language", comment: ""), selection: $selectedLanguage) {
+//                            ForEach(languages, id: \.self) { language in
+//                                Text(language)
+//                            }
+//                        }
+//                        .foregroundColor(Color.theme.blue)
+//                    }
                     
                 }
                 Section(header:Text (NSLocalizedString("Notifications", comment: ""))){
