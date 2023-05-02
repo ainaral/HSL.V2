@@ -21,11 +21,9 @@ struct MapViewPassenger: UIViewRepresentable {
         self.patternGeometry = patternGeometry
         self.stopsInfo = stopsInfo
         self.selectedBus = selectedBus
-        print("self.selectedBus in mapviewpassenger: \(self.selectedBus)")
     }
     
     func makeCoordinator() -> MapViewPassengerCoordinator {
-        print("self.selectedBus in mapviewpassenger: \(self.selectedBus)")
         return MapViewPassengerCoordinator(self, selectedBus: self.selectedBus)
     }
     

@@ -17,9 +17,6 @@ final class MapViewPassengerCoordinator: NSObject, MKMapViewDelegate {
         self.map = control
         self.viewModel.selectedBus = selectedBus
         self.selectedBus = selectedBus
-        print("viewModel.selectedBus in mapviewPassengerCoordinator: \(self.viewModel.selectedBus)")
-        print("selectedBus in mapviewPassengerCoordinator: \(self.selectedBus)")
-        
     }
   
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
