@@ -18,12 +18,12 @@ struct SpeechRecognizerView: View {
     
     var body: some View {
         VStack {
-            Text("Click on the mic icon and start talking.")
+            Text(NSLocalizedString("StartTalking", comment: ""))
                 .font(.system(size: 25))
                 .foregroundColor(Color.theme.accent)
                 .multilineTextAlignment(.center)
             
-            Text("Hint:\n \"Notify me when bus 510 is 1 stop away\"")
+            Text(NSLocalizedString("Hint", comment: ""))
                 .font(.subheadline)
                 .foregroundColor(Color.theme.gray)
                 .padding(.top, 20)

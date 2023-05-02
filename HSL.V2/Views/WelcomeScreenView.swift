@@ -29,7 +29,7 @@ struct WelcomeScreenView: View  {
         NavigationView {
             VStack {
                 // Header
-                Text("Welcome to HSL.V2")
+                Text(NSLocalizedString("WelcomeScreenString_lableTitle", comment: ""))
                     .font(.largeTitle)
                     .bold()
                     .padding(.top, 100)
@@ -37,11 +37,11 @@ struct WelcomeScreenView: View  {
                 
                 // Sign in as dropdown
                 VStack(alignment: .leading) {
-                    Text("Sign in as")
+                    Text(NSLocalizedString("SigninAs", comment: ""))
                         .font(.headline)
                     Picker(selection: $selectedRole, label: Text("")) {
-                        Text("Passenger").tag("Passenger")
-                        Text("Driver").tag("Driver")
+                        Text(NSLocalizedString("Passenger", comment: "")).tag("Passenger")
+                        Text(NSLocalizedString("Driver", comment: "")).tag("Driver")
                     }
                     .pickerStyle(SegmentedPickerStyle())
                 }
@@ -53,7 +53,7 @@ struct WelcomeScreenView: View  {
                 // Location toggle
                 VStack(alignment: .leading) {
                     Toggle(isOn: $enableLocation) {
-                        Text("Allow access to your location")
+                        Text(NSLocalizedString("AllowLocation", comment: ""))
                             .font(.headline)
                     }
                 }
@@ -68,7 +68,7 @@ struct WelcomeScreenView: View  {
                 // Notification toggle
                 VStack {
                     Toggle(isOn: $isNotificationEnabled) {
-                        Text("Enable Notifications")
+                        Text(NSLocalizedString("AllowNotifications", comment: ""))
                     }
                 }
                 .onAppear {
@@ -88,7 +88,7 @@ struct WelcomeScreenView: View  {
                 // Terms and conditions checkbox
                 VStack(alignment: .leading) {
                     Toggle(isOn: $termsAccepted) {
-                        Text("I accept the Terms and Conditions")
+                        Text(NSLocalizedString("TermsandConditions", comment: ""))
                             .font(.headline)
                     }
                 }
@@ -107,7 +107,7 @@ struct WelcomeScreenView: View  {
 //                    }
                     destination: MainView(userRole: selectedRole)
                 ) {
-                    Text("Continue")
+                    Text(NSLocalizedString("Continue", comment: ""))
                         .foregroundColor(.white)
                         .font(.headline)
                         .padding()

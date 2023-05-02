@@ -32,10 +32,10 @@ struct SettingsView: View {
     var body: some View {
         NavigationView{
             List {
-                Section(header: Text("My information")){
-                    TextField("Full Name", text: $firstName)
+                Section(header: Text(NSLocalizedString("MyInformation", comment: ""))){
+                    TextField(NSLocalizedString("FullName", comment: ""), text: $firstName)
                     HStack {
-                        Picker("I am a", selection: $selectedRole) {
+                        Picker(NSLocalizedString("Iam", comment: ""), selection: $selectedRole) {
                             ForEach(roles, id: \.self) { role in
                                 Text(role)
                             }
@@ -46,7 +46,7 @@ struct SettingsView: View {
                         .foregroundColor(Color.theme.blue)
                     }
                     HStack {
-                        Picker("Choose a language", selection: $selectedLanguage) {
+                        Picker(NSLocalizedString("Language", comment: ""), selection: $selectedLanguage) {
                             ForEach(languages, id: \.self) { language in
                                 Text(language)
                             }
@@ -55,17 +55,17 @@ struct SettingsView: View {
                     }
                     
                 }
-                Section(header:Text ("Notifications")){
-                    Toggle("Notifications", isOn: $sendNotifications)
+                Section(header:Text (NSLocalizedString("Notifications", comment: ""))){
+                    Toggle(NSLocalizedString("Notifications", comment: ""), isOn: $sendNotifications)
                         .foregroundColor(Color.theme.blue)
                 }
-                Section(header:Text ("Location Permission")){
-                    Toggle("Location", isOn: $location)
+                Section(header:Text (NSLocalizedString("LocationPermission", comment: ""))){
+                    Toggle(NSLocalizedString("Location", comment: ""), isOn: $location)
                         .foregroundColor(Color.theme.blue)
                 }
-                Section(header:Text ("About us")){
+                Section(header:Text (NSLocalizedString("AboutUs", comment: ""))){
                     NavigationLink(destination: AboutUsView()) {
-                        Label("About us", systemImage: "person.3.fill")
+                        Label(NSLocalizedString("AboutUs", comment: ""), systemImage: "person.3.fill")
                             .font(.headline)
                             .foregroundColor(Color.theme.blue)
                     }

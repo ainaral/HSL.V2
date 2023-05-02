@@ -110,7 +110,7 @@ struct searchBus: View {
             Image(systemName: "magnifyingglass")
                 .opacity(searchText.isEmpty ? 1.0 : 0.0)
             
-            TextField("Search by your bus number...", text: $searchText)
+            TextField(NSLocalizedString("SearchBusNum", comment: ""), text: $searchText)
                 .disableAutocorrection(true)
                 .onChange(of: searchText) { searchText in
                     viewModel.searchText = searchText
