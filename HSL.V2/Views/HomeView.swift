@@ -21,6 +21,10 @@ struct HomeView: View {
                 ZStack{
                     DriverView()
                 }
+            } else {
+                ZStack{
+                    PassengerView()
+                }
             }
         }
         .onAppear{

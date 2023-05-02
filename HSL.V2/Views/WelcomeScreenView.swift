@@ -111,8 +111,6 @@ struct WelcomeScreenView: View {
                 .padding(.horizontal, 50)
                 .foregroundColor(.white)
                 
-                Spacer()
-                
                 // Continue button
                 Button(action: {
                     do {
@@ -139,9 +137,6 @@ struct WelcomeScreenView: View {
                 .fullScreenCover(isPresented: $showMainView) {
                     MainView(userRole: settingsModel.selectedRole)
                 }
-                .padding(.top, 20)
-                
-                Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity) // 1
             .background(Color.blue)
