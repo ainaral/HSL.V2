@@ -67,7 +67,7 @@ class PassengerViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
         case .restricted:
             print("Your location is restricted likely due to parental controls")
         case .denied:
-            print("Youi have denied this app location permission. Go into setting to change it.")
+            print("You have denied this app location permission. Go into setting to change it.")
         case .authorizedAlways, .authorizedWhenInUse:
             region = MKCoordinateRegion(
                 center: locationManager.location!.coordinate,

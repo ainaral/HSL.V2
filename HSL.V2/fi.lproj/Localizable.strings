@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  HSL.V2
+
+  Created by Yana Krylova on 30.4.2023.
+  
+*/
+
+"WelcomeScreenString_lableTitle" = "Tervetuloa HSL.V2:een";
+"SigninAs" = "Kirjaudu sisään ";
+"Passenger" = "Matkustaja";
+"Driver" = "Bussikuski";
+"AllowLocation" = "Salli pääsy sijaintiisi";
+"AllowNotifications" = "Salli ilmoitukset";
+"TermsandConditions" = "Hyväksyn käyttöehdot";
+"Continue" = "Jatkaa";
+"SearchBusNum" = "Hae bussinumerolla";
+"Home" = "Koti";
+"Mic" = "Mikki";
+"Settings" = "Asetukset";
+"StartTalking" = "Napsauta mikki ja aloita puhuminen";
+"Hint" = "Vinkki: 'Ilmoita minulle, kun bussi 510 on 1 pysäkin päässä'";
+"AudioText" = "Äänitekstisi näkyy tässä ...";
+"MyInformation" = "Minun tiedot";
+"FullName" = "Koko nimi";
+"TermsAndConditionsInfo" = "HSL.V2 Palvelu on palvelu (\"Online Palvelu\"), jota Helsingin seudun liikennevirasto (\"HSL\") tarjoaa yritysasiakkaille.";
+"Iam" = "Olen ";
+"Language" = "Valitse kieli";
+"Notifications" = "Ilmoitukset";
+"LocationPermission" = "Sijainnin käyttölupa";
+"Save" = "Tallentaa";
+"Location" = "Sijainti";
+"PinYourself" = "Odotatko täällä bussia? Kiinnitä itsesi";
+"AboutUs" = "Meistä";
+"AboutUsInfo" = "Tervetuloa HSL.V2:een, sovellus auttaa sinua pysymään yhteydessä paikalliseen bussiliikenteeseen, päivällä tai yöllä. Ymmärrämme, että työmatkat voivat olla stressaavia varsinkin niinä pimeinä ja hämärinä öinä, jolloin bussia on vaikea nähdä. Siksi olemme suunnitelleet sovelluksemme auttamaan sinua seuraamaan bussisi sijaintia reaaliajassa ja vastaanottamaan ilmoituksia, kun se lähestyy pysäkkiäsi. \n \n Sovelluksemme käyttää sijaintiin perustuvaa teknologiaa varmistaakseen, että sinulla on aina ajantasaisimmat tiedot bussistasi. Saat ilmoituksen, kun bussisi lähestyy pysäkkiäsi, joten voit olla valmis odottamaan. \n \n Meillä on myös puheentunnistustekniikka, jonka avulla voit vain sanoa ääneen, että ilmoita, kun bussi on lähellä, ja sovellus ilmoittaa sinulle, kun bussi on tulossa. Se on yksinkertainen mutta tehokas työkalu, jolla voi olla suuri merkitys päivittäisessä työmatkassasi. \n \n Mutta se ei ole vielä kaikki, olemme myös lisänneet erikoisominaisuuden ihmisille, jotka kärsivät likinäköisyydestä, huonosta näkyvyydestä tai muista näköongelmista. Sovelluksemme ilmoittaa kuljettajalle, että joku odottaa bussipysäkillä. \n \n Olemme ylpeitä voidessamme tarjota luotettavan, käyttäjäystävällisen sovelluksen, joka helpottaa päivittäistä työmatkaasi. Ja keskitymme saavutettavuuteen ja inklusiivisuuteen, teemme kovasti töitä varmistaaksemme, että kaikki voivat hyötyä sovelluksestamme kyvyistään tai haasteistaan riippumatta. \n \n Kiitos, että valitsit HSL.V2:n – olemme innoissamme voidessamme olla osa päivittäistä matkaasi.";

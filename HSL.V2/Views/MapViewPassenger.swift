@@ -44,7 +44,7 @@ struct MapViewPassenger: UIViewRepresentable {
         for stop in self.stopsInfo {
             let annotations = MKPointAnnotation()
             annotations.title = stop.name
-            annotations.subtitle = "Wait for bus \(selectedBus) at \(stop.name)? Pin yourself!"
+            annotations.subtitle = "Waiting for bus \(selectedBus) at \(stop.name)? Pin yourself!"
             annotations.coordinate = CLLocationCoordinate2D(latitude: stop.lat, longitude: stop.lon)
             mapView.addAnnotation(annotations)
         }

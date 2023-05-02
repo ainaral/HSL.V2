@@ -36,7 +36,7 @@ struct searchBus: View {
                 Image(systemName: "magnifyingglass")
                     .opacity(searchText.isEmpty ? 1.0 : 0.0)
                     .foregroundColor(Color.theme.blue)
-                TextField("Search by your bus number...", text: $searchText)
+                TextField(NSLocalizedString("SearchBusNum", comment: ""), text: $searchText)
                     .disableAutocorrection(true)
                     .frame(height: 45)
                     .background(Color(.systemGroupedBackground))

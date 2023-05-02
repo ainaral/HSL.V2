@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  HSL.V2
+
+  Created by Yana Krylova on 30.4.2023.
+  
+*/
+
+"WelcomeScreenString_lableTitle" = "Välkommen till HSL.V2";
+"SigninAs" = "Logga in som";
+"Passenger" = "Passagerare";
+"Driver" = "Förare";
+"AllowLocation" = "Tillåt åtkomst till din plats";
+"AllowNotifications" = "Aktivera aviseringar";
+"TermsandConditions" = "Jag accepterar villkoren";
+"Continue" = "Fortsätta";
+"SearchBusNum" = "Sök på ditt bussnummer";
+"Home" = "Hem";
+"Mic" = "Mikrofon";
+"Settings" = "Inställningar";
+"StartTalking" = "Klicka på mikrofonikonen och börja prata";
+"Hint" = "Tips: 'Meddela mig när buss 510 är 1 hållplats bort'";
+"AudioText" = "Din ljudtext kommer att visas här ...";
+"MyInformation" = "Min information";
+"FullName" = "Fullständiga namn";
+"Iam" = "Jag är en";
+"Language" = "Välja ett språk";
+"Notifications" = "Aviseringar";
+"LocationPermission" = "Platsbehörighet";
+"TermsAndConditionsInfo" = "Tjänsten HSL.V2 är en tjänst (\"Onlinetjänst\") som Helsingforsregionens Trafikverk (\"HRT\") erbjuder företagskunder.";
+"Location" = "Plats";
+"Save" = "Spara";
+"PinYourself" = "Väntar du på en buss här? Fäst dig själv";
+"AboutUs" = "Om oss";
+"AboutUsInfo" = "Välkommen till HSL.V2, appen hjälper dig att hålla kontakten med din lokala busstjänst, dag som natt. Vi förstår att pendlingen kan vara stressande, särskilt under de mörka och dunkla nätterna när det är svårt att se bussen. Det är därför vi har designat vår app för att hjälpa dig att spåra din busss plats i realtid och få aviseringar när den närmar sig din hållplats. \n \n Vår app använder platsbaserad teknik för att säkerställa att du alltid har den senaste informationen om din buss. Du kommer att få aviseringar när din buss närmar sig din hållplats, så att du kan vara redo och vänta. \n \n Vi har också taligenkänningstekniken som gör att du helt enkelt kan säga till dig när bussen är nära högt, och appen kommer att meddela dig när bussen kommer. Det är ett enkelt men kraftfullt verktyg som kan göra stor skillnad i din dagliga pendling. \n \n Men det är inte allt, vi har också lagt till en specialfunktion för personer som har att göra med närsynthet, dålig synlighet eller andra synproblem. Vår app kommer att varna föraren om att någon väntar vid busshållplatsen. \n \n Vi är stolta över att kunna erbjuda en pålitlig, användarvänlig app som hjälper till att göra din dagliga pendling lite enklare. Och med fokus på tillgänglighet och inkludering arbetar vi hårt för att se till att alla kan dra nytta av vår app, oavsett deras förmågor eller utmaningar. \n \n Tack för att du valde HSL.V2 - vi är glada över att vara en del av din dagliga resa.";

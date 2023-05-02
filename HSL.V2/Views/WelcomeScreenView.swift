@@ -5,8 +5,10 @@
 //  Created by Yana Krylova on 17.4.2023.
 //
 
-import SwiftUI
-import UserNotifications
+
+
+    import SwiftUI
+    import UserNotifications
 
 struct WelcomeScreenView: View {
     
@@ -15,7 +17,7 @@ struct WelcomeScreenView: View {
     
     @State private var termsAccepted = false
     @State private var showMainView = false
-
+    
     var roleSelected: ((String) -> Void)? // callback function
     
     init(roleSelected: ((String) -> Void)? = nil) {
@@ -26,7 +28,7 @@ struct WelcomeScreenView: View {
         NavigationView {
             VStack {
                 // Header
-                Text("Welcome to HSL.V2")
+                Text(NSLocalizedString("WelcomeScreenString_lableTitle", comment: ""))
                     .font(.largeTitle)
                     .bold()
                     .padding(.top, 30)
@@ -34,7 +36,7 @@ struct WelcomeScreenView: View {
                 
                 // Name input
                 VStack(alignment: .leading) {
-                    TextField("Full Name", text: $settingsModel.fullName)
+                    TextField(NSLocalizedString("FullName", comment: ""), text: $settingsModel.fullName)
                         .padding()
                         .font(.headline)
                         .disableAutocorrection(true)
@@ -47,11 +49,11 @@ struct WelcomeScreenView: View {
                 
                 // Sign in as dropdown
                 VStack(alignment: .leading) {
-                    Text("Sign in as")
+                    Text(NSLocalizedString("SigninAs", comment: ""))
                         .font(.headline)
                     Picker(selection: $settingsModel.selectedRole, label: Text("")) {
-                        Text("Passenger").tag("Passenger")
-                        Text("Driver").tag("Driver")
+                        Text(NSLocalizedString("Passenger", comment: "")).tag("Passenger")
+                        Text(NSLocalizedString("Driver", comment: "")).tag("Driver")
                     }
                     .pickerStyle(SegmentedPickerStyle())
                 }
@@ -65,7 +67,7 @@ struct WelcomeScreenView: View {
                 // Location toggle
                 VStack(alignment: .leading) {
                     Toggle(isOn: $settingsModel.location) {
-                        Text("Allow access to your location")
+                        Text(NSLocalizedString("AllowLocation", comment: ""))
                             .font(.headline)
                     }
                 }
@@ -76,7 +78,7 @@ struct WelcomeScreenView: View {
                 // Notification toggle
                 VStack {
                     Toggle(isOn: $settingsModel.sendNotifications) {
-                        Text("Enable Notifications")
+                        Text(NSLocalizedString("AllowNotifications", comment: ""))
                             .font(.headline)
                     }
                 }
@@ -88,12 +90,12 @@ struct WelcomeScreenView: View {
                 VStack(alignment: .leading) {
                     // Terms and conditions text
                     VStack(alignment: .leading) {
-                        Text("          Terms and Conditions")
+                        Text(NSLocalizedString("TermsAndConditions", comment: ""))
                             .font(.headline)
                             .foregroundColor(.black)
                             .padding(3)
                         ScrollView{
-                            Text("The HSL.V2 Service is a service (\"Online Service\") that the Helsinki Regional Transport Authority (\"HSL\") offers to corporate customers.")
+                            Text(NSLocalizedString("TermsAndConditionsInfo", comment: ""))
                                 .foregroundColor(.black)
                         }
                         .frame(height: 65)
@@ -103,7 +105,7 @@ struct WelcomeScreenView: View {
                     .cornerRadius(10)
                     
                     Toggle(isOn: $termsAccepted) {
-                        Text("I accept the Terms and Conditions")
+                        Text(NSLocalizedString("TermsAndConditions", comment: ""))
                             .font(.headline)
                     }
                 }
@@ -122,7 +124,7 @@ struct WelcomeScreenView: View {
                     }
                     self.showMainView = true
                 }) {
-                    Text("Continue")
+                    Text(NSLocalizedString("Continue", comment: ""))
                         .foregroundColor(.white)
                         .font(.headline)
                         .padding()
@@ -152,3 +154,4 @@ struct WelcomeScreenView: View {
         }
     }
 }
+
