@@ -19,19 +19,17 @@ extension UserDefaults {
 }
 
 struct MainView: View {
-    
-    @State private var selectedRole: String = "Passenger"
+    @ObservedObject var settingsModel = SettingsViewModel()
     @State public var userRole: String = ""
     
     var body: some View {
         if UserDefaults.standard.welcomeScreenShown {
             TabView {
-                HomeView(selectedRole: userRole)
+                HomeView(settingsModel: settingsModel)
                     .tabItem(){
                         Image(systemName: "house.fill")
                         Text("Home")
                     }
-                    .navigationBarHidden(true)
                 
                 SpeechRecognizerView()
                     .tabItem(){
@@ -51,37 +49,13 @@ struct MainView: View {
         } else {
             NavigationView {
                 WelcomeScreenView()
-//                TabView {
-//                    HomeView(selectedRole: selectedRole)
-//                        .tabItem(){
-//                            Image(systemName: "house.fill")
-//                            Text("Home")
-//                        }
-//                        .navigationBarHidden(true)
-//
-//                    SpeechRecognizerView()
-//                        .tabItem(){
-//                            Image(systemName: "mic")
-//                            Text("Mic")
-//                        }
-//
-//                    SettingsView(roleSelected: { role in
-//                        selectedRole = role
-//                    })
-//                    .tabItem(){
-//                        Image(systemName: "gearshape")
-//                        Text("Settings")
-//                    }
-                }
-                .accentColor(.blue)
             }
         }
     }
-
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeScreenView()
+  
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            WelcomeScreenView()
+        }
     }
 }

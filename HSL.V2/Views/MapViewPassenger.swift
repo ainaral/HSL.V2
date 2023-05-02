@@ -21,14 +21,10 @@ struct MapViewPassenger: UIViewRepresentable {
         self.patternGeometry = patternGeometry
         self.stopsInfo = stopsInfo
         self.selectedBus = selectedBus
-        print("selectedbus in mapviewpassenger init \(selectedBus)")
     }
     
     func makeCoordinator() -> MapViewPassengerCoordinator {
-        print("selectedbus in makecoordinator \(selectedBus)")
-        print("selectedbus in makecoordinator \(self.selectedBus)")
         return MapViewPassengerCoordinator(self, selectedBus: self.selectedBus)
-        
     }
     
     func makeUIView(context: Context) -> MKMapView {
@@ -56,14 +52,12 @@ struct MapViewPassenger: UIViewRepresentable {
         // update the annotations from core data
         let markers = viewModel.getMarkerByName(busName: selectedBus)
         markers.forEach { marker in
+            print("marker in mapviewPassenger: \(String(describing: marker.busName)) \(marker.stopLat) \(marker.stopLon)")
             let markerAnnotations = MKPointAnnotation()
             markerAnnotations.title = "Marker"
             markerAnnotations.coordinate = CLLocationCoordinate2D(latitude: marker.stopLat, longitude: marker.stopLon)
             mapView.addAnnotation(markerAnnotations)
         }
-        
-//        print("selected bus in mapviewpassenger: \(selectedBus)")
-        
         return mapView
     }
     

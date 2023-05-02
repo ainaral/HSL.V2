@@ -8,19 +8,35 @@
 import SwiftUI
 
 struct HomeView: View {
-    let selectedRole: String
+    @ObservedObject var settingsModel: SettingsViewModel
     
     var body: some View {
-        if selectedRole == "Passenger" {
-            PassengerView()
-        } else if selectedRole == "Driver" {
-            DriverView()
+        VStack{
+            if settingsModel.selectedRole == "Passenger" {
+                ZStack{
+                    PassengerView()
+                }
+            }
+            else if settingsModel.selectedRole == "Driver" {
+                ZStack{
+                    DriverView()
+                }
+            } else {
+                ZStack{
+                    PassengerView()
+                }
+            }
+        }
+        .onAppear{
+            settingsModel.fetchUserPreferences()
         }
     }
 }
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView(selectedRole: "Passenger")
+    struct HomeView_Previews: PreviewProvider {
+        static var previews: some View {
+            let settingsModel = SettingsViewModel()
+            return HomeView(settingsModel: settingsModel)
+        }
     }
-}
+    
+
