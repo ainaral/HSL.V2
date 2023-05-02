@@ -82,6 +82,8 @@ struct searchBus: View {
                             viewModel.fetchData(queryType: .routeByBus(search: bus.shortName))
                             viewModel.showBusList = false
                             viewModel.showDirectionList = true
+                            viewModel.selectedBus = bus.shortName
+                            print("viewModel.selectedBus in searchPassengerView: \(viewModel.selectedBus)")
                         } label: {
                             Text(bus.shortName)
                         }
